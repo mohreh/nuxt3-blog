@@ -1,3 +1,3 @@
 <template>
-  <p>hello world</p>
+  <div><navbar/></div>
 </template>
