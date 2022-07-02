@@ -7,4 +7,12 @@ export default defineNuxtConfig({
     link: [{ type: 'text/css', href: '/assests/css/tailwindcss.css' }],
   },
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt'],
+  build: {
+    transpile: ['@heroicons/vue'],
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@heroicons/vue/solid', '@heroicons/vue/outline', 'vue'],
+    },
+  },
 });

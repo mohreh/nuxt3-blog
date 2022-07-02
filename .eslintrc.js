@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
     'no-unused-expressions': 'off',
     'vue/no-v-html': 'off',
     'no-console': 'off',
