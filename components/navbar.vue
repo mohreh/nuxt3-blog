@@ -10,7 +10,7 @@
       <p
         class="pl-3 py-1 light:text-sky-700 hover:cursor-pointer hover:text-sky-900 dark:text-sky-100 dark:hover:text-sky-300"
       >
-        <nuxt-link to=""> <LoginIcon class="w-5" /> </nuxt-link>
+        <nuxt-link to="/login"> <LoginIcon class="w-5" /> </nuxt-link>
       </p>
 
       <dark-theme></dark-theme>
