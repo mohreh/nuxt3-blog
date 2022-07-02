@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  @apply bg-slate-50 min-h-screen;
+  @apply min-h-screen;
   direction: ltr;
   height: -webkit-fill-available;
   min-height: -webkit-fill-available;
@@ -33,6 +33,6 @@ body {
 }
 
 .container {
-  @apply m-auto max-w-full bg-slate-100 dark:bg-gray-900 min-h-screen relative flex flex-col py-2 px-8;
+  @apply bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-200 dark:bg-gradient-to-br dark:from-slate-800 dark:via-slate-900 dark:to-black m-auto max-w-full min-h-screen relative flex flex-col py-2 px-8;
 }
 </style>
