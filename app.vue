@@ -4,8 +4,35 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+definePageMeta({
+  colorMode: 'light',
+});
+</script>
+
 <style lang="postcss">
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Gantari:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  @apply transition-all;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  @apply bg-slate-50 min-h-screen;
+  direction: ltr;
+  height: -webkit-fill-available;
+  min-height: -webkit-fill-available;
+  font-family: 'Gantari', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
 .container {
-  @apply m-auto max-w-full bg-slate-100 min-h-screen relative flex flex-col py-3 px-6;
+  @apply m-auto max-w-full bg-slate-100 dark:bg-gray-900 min-h-screen relative flex flex-col py-2 px-8;
 }
 </style>

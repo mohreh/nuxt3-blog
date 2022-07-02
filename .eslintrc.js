@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
+    'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
@@ -19,7 +20,7 @@ module.exports = {
   rules: {
     'no-unused-expressions': 'off',
     'vue/no-v-html': 'off',
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-console': 'off',
     'no-unused-vars': 'off',
     'vue/no-unused-vars': 'off',
     'vue/multi-word-component-names': [
