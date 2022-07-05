@@ -5,6 +5,8 @@ definePageMeta({
 
 const body = ref({});
 const pending = ref(false);
+const errors = ref('');
+const router = useRouter();
 
 // Classes
 const textClasses = {
@@ -19,13 +21,28 @@ const textClasses = {
   message: 'text-xs text-red-500',
 };
 
-const submitHandler = () => {
-  console.log('hii');
+const submitHandler = async () => {
+  pending.value = true;
+  const { data, error } = await useFetch('/api/users', {
+    method: 'POST',
+    body: body.value,
+  });
+
+  if (!data.value.ok) {
+    errors.value = data.value.message
+      ? 'Internal server Error:' + data.value.message
+      : 'Client Error: ' + error.value;
+  } else {
+    router.push('/');
+  }
 };
 </script>
 
 <template>
-  <div>
+  <p v-if="errors" class="text-red-600 dark:text-red-400 text-lg py-2">
+    {{ errors }}
+  </p>
+  <div v-else>
     <FormKit
       v-model="body"
       type="form"
@@ -33,8 +50,8 @@ const submitHandler = () => {
       :classes="{
         actions: `text-center text-lg rounded-xl transition cursor-pointer ${
           pending
-            ? 'bg-slate-200 text-slate-800 '
-            : 'bg-blue-800 text-slate-100 hover:bg-blue-900'
+            ? 'bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-slate-400'
+            : 'bg-blue-800 dark:bg-blue-800 text-slate-100 hover:bg-blue-900'
         } `,
         message: 'text-lg text-red-500 pb-2',
         label: 'my-2',
