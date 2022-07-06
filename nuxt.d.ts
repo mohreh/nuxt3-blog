@@ -10,7 +10,7 @@ interface ResponseData<T> {
   error?: string;
 }
 
-interface User {
+interface UserInterface {
   username: string;
   id: string;
   role: Role;

@@ -1,7 +1,11 @@
 <script setup>
+import { useUserStore } from '@/store/user';
+
 definePageMeta({
   layout: 'welcome',
 });
+
+const userStore = useUserStore();
 
 const body = ref({});
 const pending = ref(false);
@@ -33,6 +37,9 @@ const submitHandler = async () => {
       ? 'Internal server Error:' + data.value.message
       : 'Client Error: ' + error.value;
   } else {
+    userStore.$patch({
+      ...data.value.data,
+    });
     router.push('/');
   }
 };

@@ -8,7 +8,12 @@ export default defineNuxtConfig({
       { type: 'text/css', href: '/assests/css/tailwindcss.css' },
     ],
   },
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@formkit/nuxt'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    '@formkit/nuxt',
+    '@pinia/nuxt',
+  ],
   build: {
     transpile: ['@heroicons/vue'],
   },
