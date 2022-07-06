@@ -33,8 +33,8 @@ const submitHandler = async () => {
   });
 
   if (!data.value.ok) {
-    errors.value = data.value.message
-      ? 'Internal server Error:' + data.value.message
+    errors.value = data.value.error
+      ? 'Internal server Error:' + data.value.error
       : 'Client Error: ' + error.value;
   } else {
     userStore.$patch({
