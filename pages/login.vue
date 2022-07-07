@@ -27,7 +27,7 @@ const textClasses = {
 
 const submitHandler = async () => {
   pending.value = true;
-  const { data, error } = await useFetch('/api/users', {
+  const { data, error } = await useFetch('/api/users/register', {
     method: 'POST',
     body: body.value,
   });

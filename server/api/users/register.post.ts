@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   try {
-    const { username, password } = await useBody<RegisterBody>(event);
+    const { username, password } = await useBody<RegisterData>(event);
     const user = await prisma.user.create({
       data: {
         username,

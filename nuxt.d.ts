@@ -1,4 +1,4 @@
-interface RegisterBody {
+interface RegisterData {
   username: string;
   password: string;
 }
