@@ -12,7 +12,6 @@ interface ResponseData<T> {
 
 interface UserInterface {
   username: string;
-  id: string;
   role: Role;
 }
 
