@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import jwt from '~~/server/utils/jwt';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
@@ -19,6 +20,15 @@ export default defineEventHandler(async (event) => {
     }
 
     if (user.password === password) {
+      const accessToken = jwt.signPayload({
+        sub: user.username,
+      });
+
+      setCookie(event, 'access_token', accessToken, {
+        secure: true,
+        sameSite: true,
+      });
+
       return {
         ok: true,
         data: user,
