@@ -5,13 +5,19 @@
   >
     <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
     <div class="text-md flex flex-row dark:text-sky-100">
-      <div class="border-l border-slate-300 my-1 dark:border-slate-700"></div>
+      <div class="border-l border-slate-300 dark:border-slate-600 my-1"></div>
 
-      <p
-        class="pl-3 py-1 light:text-sky-700 hover:cursor-pointer hover:text-sky-900 dark:text-sky-100 dark:hover:text-sky-300"
-      >
-        <nuxt-link to="/login"> <LoginIcon class="w-5" /> </nuxt-link>
-      </p>
+      <ClientOnly>
+        <div v-if="userStore.$state.username" class="flex flex-row">
+          <profile class="pl-3 py-1 icon" />
+          <div class="ml-3 pl-3 py-1">
+            <LogoutIcon class="icon" @click="logout" />
+          </div>
+        </div>
+        <p v-else class="pl-3 py-1">
+          <nuxt-link to="/login"> <LoginIcon class="icon" /> </nuxt-link>
+        </p>
+      </ClientOnly>
 
       <dark-theme></dark-theme>
     </div>
@@ -19,7 +25,19 @@
 </template>
 
 <script lang="ts" setup>
-import { LoginIcon } from '@heroicons/vue/outline';
+import { LoginIcon, LogoutIcon } from '@heroicons/vue/outline';
+import { useUserStore } from '~~/store/user';
+
+const userStore = useUserStore();
+const logout = () => {
+  const accessToken = useCookie('access_token');
+  accessToken.value = null;
+  userStore.$reset();
+};
 </script>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+.icon {
+  @apply w-5 hover:cursor-pointer hover:text-sky-900 dark:text-sky-100 dark:hover:text-sky-300;
+}
+</style>

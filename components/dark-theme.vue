@@ -1,8 +1,8 @@
 <template>
   <ClientOnly>
     <button class="py-1 ml-3 max-h-full" @click="toggleDark()">
-      <SunIcon v-if="darkTheme" class="w-5" />
-      <MoonIcon v-else class="w-5" />
+      <SunIcon v-if="darkTheme" class="icon" />
+      <MoonIcon v-else class="icon" />
     </button>
   </ClientOnly>
 </template>
