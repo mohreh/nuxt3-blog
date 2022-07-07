@@ -15,7 +15,9 @@
           </div>
         </div>
         <p v-else class="pl-3 py-1">
-          <nuxt-link to="/login"> <LoginIcon class="icon" /> </nuxt-link>
+          <nuxt-link to="/login-register">
+            <LoginIcon class="icon" />
+          </nuxt-link>
         </p>
       </ClientOnly>
 
