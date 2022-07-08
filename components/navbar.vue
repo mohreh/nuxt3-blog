@@ -1,11 +1,10 @@
 <template>
-  <div
-    id="navbar"
-    class="flex flex-row items-center justify-between w-full py-2"
-  >
+  <div id="navbar">
     <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
     <div class="text-md flex flex-row dark:text-sky-100">
-      <div class="border-l border-slate-300 dark:border-slate-600 my-1"></div>
+      <div
+        class="border-l border-slate-900/10 dark:border-slate-50/10 my-1"
+      ></div>
 
       <ClientOnly>
         <div v-if="userStore.$state.username" class="flex flex-row">
@@ -39,6 +38,10 @@ const logout = () => {
 </script>
 
 <style lang="postcss">
+#navbar {
+  @apply flex flex-row items-center justify-between z-10 sticky top-0 w-full py-3 px-8 border-b border-slate-900/10 dark:border-slate-50/[0.06] backdrop-blur-md bg-white/10 dark:bg-black/10;
+}
+
 .icon {
   @apply w-5 hover:cursor-pointer hover:text-sky-900 dark:text-sky-100 dark:hover:text-sky-300;
 }
