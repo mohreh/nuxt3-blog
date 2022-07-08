@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="absolute invisible">
-      <dark-theme></dark-theme>
-    </div>
     <div class="titles">
       <h1 :class="forRegister ? 'bold' : 'light'" @click="toggleStatus">
         Register
