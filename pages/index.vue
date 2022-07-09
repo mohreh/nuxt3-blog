@@ -4,7 +4,7 @@
       <welcome v-if="!userStore.username" />
 
       <div class="bordered p-2">
-        <h3>Famous Communities</h3>
+        <h3>Famous Topics</h3>
       </div>
 
       <div class="bordered p-2">
