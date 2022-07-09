@@ -8,7 +8,7 @@
 
       <ClientOnly>
         <div v-if="userStore.$state.username" class="flex flex-row">
-          <profile class="pl-3 py-1 icon" />
+          <profile class="pl-3 py-1 w-5" />
           <div class="ml-3 pl-3 py-1">
             <LogoutIcon class="icon" @click="logout" />
           </div>
