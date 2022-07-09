@@ -74,7 +74,7 @@ const submitHandler = async () => {
         placeholder="username"
         :classes="textClasses"
         validation-visibility="submit"
-        validation="required|matches:/^\S*$/"
+        validation="required|length:5|matches:/^\S*$/"
         :validation-messages="{
           required: 'name is required.',
         }"
