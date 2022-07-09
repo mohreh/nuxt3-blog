@@ -19,29 +19,36 @@
           class="absolute -right-4 mt-1 w-56 rounded-md shadow-lg bg-slate-50/[0.06] dark:bg-slate-600/[0.06] border border-slate-700/10 dark:border-slate-50/[0.06] backdrop-blur-xl divide-y divide-slate-700/10 dark:divide-slate-50/[0.06]"
         >
           <div class="py-1">
-            <div class="flex flex-row px-4 py-2 items-center">
-              <p>username:</p>
-              <h4 class="text-lg font-semibold mx-2">
-                {{ userStore.username }}
-              </h4>
+            <div class="icon-group">
+              <UserCircleIcon class="w-4" />
+              <div class="flex flex-row items-center space-x-1">
+                <p>username:</p>
+                <h4 class="text-lg font-semibold">
+                  {{ userStore.username }}
+                </h4>
+              </div>
             </div>
           </div>
           <div class="py-1">
-            <div>
-              <p class="block px-4 py-2 hovered">Create new post</p>
+            <div class="icon-group">
+              <PencilIcon class="w-4" />
+              <p>Create new post</p>
             </div>
           </div>
           <div class="py-1">
-            <div>
-              <p class="block px-4 py-2 hovered">Followers</p>
+            <div class="icon-group">
+              <UserGroupIcon class="w-4" />
+              <p>Followers & Followings</p>
             </div>
-            <div>
-              <p class="block px-4 py-2 hovered">Followings</p>
+            <div class="icon-group">
+              <BellIcon class="w-4" />
+              <p>Notifications</p>
             </div>
           </div>
           <div class="py-1">
-            <div>
-              <p class="block px-4 py-2 hovered">Sing out</p>
+            <div class="px-4 py-2 hovered icon-group" @click="logout">
+              <LogoutIcon class="w-4" />
+              <p>Sing out</p>
             </div>
           </div>
         </div>
@@ -50,20 +57,34 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { UserCircleIcon } from '@heroicons/vue/outline';
+import {
+  UserCircleIcon,
+  PencilIcon,
+  LogoutIcon,
+  BellIcon,
+  UserGroupIcon,
+} from '@heroicons/vue/outline';
 import { useUserStore } from '~~/store/user';
 
 const userStore = useUserStore();
+
+const emit = defineEmits(['logout']);
 
 const hide = ref(true);
 const toggleDropdown = () => {
   hide.value = !hide.value;
 };
 const hideDropdown = () => (hide.value = true);
+
+const logout = () => emit('logout');
 </script>
 
 <style lang="postcss" scoped>
 .hovered {
   @apply cursor-pointer hover:text-sky-600 hover:dark:text-sky-300 hover:bg-black/5 hover:dark:bg-white/5;
+}
+
+.icon-group {
+  @apply flex flex-row hovered px-4 py-2 space-x-4;
 }
 </style>
