@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-row space-x-4 h-full mt-5">
     <section class="flex-none w-64 space-y-4">
-      <welcome v-if="!userStore.username" />
+      <ClientOnly>
+        <welcome v-if="!userStore.username" />
+      </ClientOnly>
 
       <div class="bordered p-2">
         <h3>Famous Topics</h3>
