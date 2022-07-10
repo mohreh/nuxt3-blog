@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 import jwt from '~~/server/utils/jwt';
+
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
@@ -19,7 +21,7 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    if (user.password === password) {
+    if (bcrypt.compareSync(password, user.password)) {
       const accessToken = jwt.signPayload({
         sub: user.username,
       });

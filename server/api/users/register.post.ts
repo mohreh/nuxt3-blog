@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 import jwt from '~~/server/utils/jwt';
 
 const prisma = new PrismaClient();
@@ -6,10 +7,16 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   try {
     const { username, password } = await useBody<RegisterData>(event);
+
+    const hashedPassword = bcrypt.hashSync(
+      password,
+      parseInt(process.env.SALT_ROUNDS),
+    );
+
     const user = await prisma.user.create({
       data: {
         username,
-        password,
+        password: hashedPassword,
       },
     });
 

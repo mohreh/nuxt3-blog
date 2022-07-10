@@ -3,6 +3,10 @@ interface RegisterData {
   password: string;
 }
 
+interface JwtPayload {
+  sub: string;
+}
+
 interface ResponseData<T> {
   ok: boolean;
   message?: string;
