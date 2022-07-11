@@ -15,9 +15,28 @@ model User {
   password String
   username String @unique
   role Role @default(User)
+
+  createdAt DateTime @default(now())
+
+  posts Post[]
 }
 
 enum Role {
   User
   Admin
+}
+
+model Post {
+  id String @id @default(cuid())
+  title String
+  text String
+  coverImage String?
+  hashtags String[]
+  views Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
 }
