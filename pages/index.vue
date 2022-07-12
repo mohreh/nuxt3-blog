@@ -2,7 +2,7 @@
   <div class="flex flex-row space-x-4 h-full mt-5">
     <section class="flex-none w-64 space-y-4">
       <ClientOnly>
-        <welcome v-if="!userStore.username" />
+        <user-welcome v-if="!userStore.username" />
       </ClientOnly>
 
       <div class="bordered p-2">

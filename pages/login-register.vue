@@ -12,8 +12,8 @@
         </h1>
       </div>
 
-      <register v-if="forRegister" />
-      <login v-else />
+      <user-register v-if="forRegister" />
+      <user-login v-else />
     </div>
   </div>
 </template>
