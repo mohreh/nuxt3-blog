@@ -30,10 +30,10 @@
             </div>
           </div>
           <div class="py-1">
-            <div class="icon-group">
+            <nuxt-link class="icon-group" to="/posts/create">
               <PencilIcon class="w-4" />
               <p>Create new post</p>
-            </div>
+            </nuxt-link>
           </div>
           <div class="py-1">
             <div class="icon-group">

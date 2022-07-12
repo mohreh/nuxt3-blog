@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <div class="titles">
-      <h1 :class="forRegister ? 'bold' : 'light'" @click="toggleStatus">
-        Register
-      </h1>
-      <h1 :class="forRegister ? 'light' : 'bold'" @click="toggleStatus">
-        Login
-      </h1>
-    </div>
+  <div class="w-screen h-screen flex justify-center items-center">
+    <div
+      class="max-h-fit max-w-lg w-full border rounded-lg p-3 shadow-lg dark:shadow-2xl border-slate-800/10 dark:border-slate-50/[0.06]"
+    >
+      <div class="titles">
+        <h1 :class="forRegister ? 'bold' : 'light'" @click="toggleStatus">
+          Register
+        </h1>
+        <h1 :class="forRegister ? 'light' : 'bold'" @click="toggleStatus">
+          Login
+        </h1>
+      </div>
 
-    <register v-if="forRegister" />
-    <login v-else />
+      <register v-if="forRegister" />
+      <login v-else />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'welcome',
+  layout: 'empt',
 });
 
 const forRegister = ref(true);

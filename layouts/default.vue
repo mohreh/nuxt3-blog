@@ -9,6 +9,6 @@
 
 <style lang="postcss" scoped>
 .container {
-  @apply m-auto max-w-full min-h-screen relative flex flex-col py-2 px-8;
+  @apply m-auto max-w-full relative flex flex-col py-2 px-8;
 }
 </style>
