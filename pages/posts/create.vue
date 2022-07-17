@@ -16,6 +16,7 @@
 
 <script lang="ts" setup>
 definePageMeta({
+  middleware: 'signed',
   layout: 'empt',
 });
 

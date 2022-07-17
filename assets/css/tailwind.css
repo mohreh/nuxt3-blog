@@ -24,6 +24,6 @@ body {
 }
 
 p {
-  word-wrap: break-word;
+  word-wrap: break-words;
   white-space: break-spaces;
 }
