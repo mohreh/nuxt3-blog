@@ -1,3 +1,28 @@
 <template>
-  <h1>Create Post</h1>
+  <div class="h-full flex flex-col">
+    <div ref="nav" class="flex flex-row items-end space-x-10 py-3 px-8 h-fit">
+      <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
+      <h2 class="text-xl font-semibold dark:text-sky-100">Create New Post</h2>
+    </div>
+    <div class="py-2 px-8 flex flex-row space-x-4 grow mb-3">
+      <editor-tiptap
+        class="grow overflow-auto relative"
+        :style="`height: calc(100vh - ${height}px - 1.5rem);`"
+      />
+      <div class="w-1/3"></div>
+    </div>
+  </div>
 </template>
+
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'empt',
+});
+
+const nav = ref();
+const height = ref(0);
+
+onMounted(() => {
+  height.value = nav.value.clientHeight;
+});
+</script>
