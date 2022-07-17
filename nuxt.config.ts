@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@formkit/nuxt',
     '@pinia/nuxt',
+    'nuxt-icons',
   ],
   build: {
     transpile: ['@heroicons/vue'],
