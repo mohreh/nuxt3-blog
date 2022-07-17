@@ -1,18 +1,20 @@
 <template>
   <div
-    class="flex flex-col border rounded border-slate-800 space-y-3 h-96 overflow-auto"
+    class="flex flex-col border rounded-lg border-slate-900/10 dark:border-slate-50/5 space-y-5 h-96 overflow-y-auto"
   >
     <ClientOnly>
       <input
         type="text"
-        class="w-full bg-inherit flex-none px-5 py-5 outline-none text-4xl"
+        class="w-full bg-inherit flex-none px-12 pt-10 pb-5 outline-none text-4xl font-bold dark:text-sky-100/95 text-slate-900"
         placeholder="Write Post Title Here..."
       />
+
       <editor-menu
         :editor="editor"
-        class="h-fit px-5 py-2 flex-none dark:bg-slate-900"
+        class="h-fit px-12 py-2 flex-none bg-purple-100 dark:bg-slate-900 sticky top-0 z-10"
       />
-      <editor-content :editor="editor" class="grow mx-5" @click="focus" />
+
+      <editor-content :editor="editor" class="grow mx-12" @click="focus" />
     </ClientOnly>
   </div>
 </template>
@@ -22,7 +24,7 @@ import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 
 const editor = useEditor({
-  content: '<p>start writing here...</p>',
+  content: '<p>Start writing here...</p>',
   extensions: [StarterKit],
 });
 
@@ -31,6 +33,55 @@ const focus = () => editor.value.view.focus();
 
 <style lang="postcss">
 .ProseMirror {
-  @apply outline-none;
+  @apply outline-none text-slate-900 dark:text-sky-100 text-xl tracking-wider font-medium leading-relaxed;
+
+  h2 {
+    @apply font-bold text-3xl;
+  }
+
+  h3 {
+    @apply font-bold text-2xl;
+  }
+
+  h4 {
+    @apply font-bold text-xl;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul,
+  ol {
+    @apply list-inside;
+    li {
+      p {
+        @apply inline;
+      }
+    }
+  }
+
+  pre {
+    @apply bg-slate-300/50 dark:bg-black/40 px-4 py-5 rounded-lg text-base;
+    code {
+      @apply bg-inherit p-0;
+    }
+  }
+
+  blockquote {
+    @apply px-4 mx-7 my-4 border-l-4 border-sky-100/20;
+  }
+
+  code {
+    @apply bg-black/10 p-1 text-base rounded;
+  }
+
+  hr {
+    @apply content-none m-7 border-t-0 border-b-2 border-slate-900/10 dark:border-sky-100/10;
+  }
 }
 </style>

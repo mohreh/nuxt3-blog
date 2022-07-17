@@ -53,18 +53,25 @@ const items: (Item | { type: string })[] = [
     type: 'divider',
   },
   {
-    icon: 'h-1',
-    title: 'Heading 1',
-    action: () =>
-      props.editor.chain().focus().toggleHeading({ level: 1 }).run(),
-    isActive: () => props.editor.isActive('heading', { level: 1 }),
-  },
-  {
     icon: 'h-2',
     title: 'Heading 2',
     action: () =>
       props.editor.chain().focus().toggleHeading({ level: 2 }).run(),
     isActive: () => props.editor.isActive('heading', { level: 2 }),
+  },
+  {
+    icon: 'h-3',
+    title: 'Heading 3',
+    action: () =>
+      props.editor.chain().focus().toggleHeading({ level: 3 }).run(),
+    isActive: () => props.editor.isActive('heading', { level: 3 }),
+  },
+  {
+    icon: 'h-4',
+    title: 'Heading 4',
+    action: () =>
+      props.editor.chain().focus().toggleHeading({ level: 4 }).run(),
+    isActive: () => props.editor.isActive('heading', { level: 4 }),
   },
   {
     icon: 'paragraph',
@@ -83,12 +90,6 @@ const items: (Item | { type: string })[] = [
     title: 'Ordered List',
     action: () => props.editor.chain().focus().toggleOrderedList().run(),
     isActive: () => props.editor.isActive('orderedList'),
-  },
-  {
-    icon: 'list-check-2',
-    title: 'Task List',
-    action: () => props.editor.chain().focus().toggleTaskList().run(),
-    isActive: () => props.editor.isActive('taskList'),
   },
   {
     icon: 'code-box-line',
@@ -142,6 +143,6 @@ const items: (Item | { type: string })[] = [
 
 <style lang="postcss" scoped>
 .divider {
-  @apply border-l border-slate-900/10 dark:border-slate-50/10 h-4;
+  @apply border-l border-slate-900/10 dark:border-slate-50/10 h-5;
 }
 </style>
