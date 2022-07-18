@@ -5,7 +5,7 @@ import jwt from '../utils/jwt';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const accessToken = useCookie(event, 'access_token');
+  const accessToken = useCookies(event)['access_token'];
 
   if (accessToken) {
     const { sub } = jwt.verifyToken(accessToken);
