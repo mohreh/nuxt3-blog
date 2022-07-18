@@ -10,7 +10,7 @@
         class="w-2/3 overflow-auto relative"
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
-      <div class="w-1/3 text-white">{{ body }}</div>
+      <div class="w-1/3 text-white">{{ body.title }} {{ body.text }}</div>
     </div>
   </div>
 </template>
@@ -21,7 +21,10 @@ definePageMeta({
   layout: 'empt',
 });
 
-const body = ref('<p>Start writing here...</p>');
+const body = ref({
+  title: '',
+  text: '<p>Start writing here...</p>',
+});
 
 const nav = ref();
 const height = ref(0);

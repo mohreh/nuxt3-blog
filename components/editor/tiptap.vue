@@ -5,6 +5,7 @@
     <ClientOnly>
       <input
         type="text"
+        v-model="modelValue.title"
         class="w-full bg-inherit flex-none px-12 pt-10 pb-5 outline-none text-4xl font-bold dark:text-sky-100/95 text-slate-900"
         placeholder="Write Post Title Here..."
       />
@@ -23,14 +24,23 @@
 import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 
-const prop = defineProps<{ modelValue: string }>();
+const prop = defineProps<{
+  modelValue: {
+    title: string;
+    text: string;
+  };
+}>();
+
 const emit = defineEmits(['update:modelValue']);
 
 const editor = useEditor({
-  content: prop.modelValue,
+  content: prop.modelValue.text,
   extensions: [StarterKit],
   onUpdate: () => {
-    emit('update:modelValue', editor.value.getHTML());
+    console.log(editor.value.getHTML());
+    emit('update:modelValue', {
+      text: editor.value.getHTML(),
+    });
   },
 });
 </script>
