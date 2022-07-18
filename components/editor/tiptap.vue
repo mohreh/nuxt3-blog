@@ -5,9 +5,15 @@
     <ClientOnly>
       <input
         type="text"
-        v-model="modelValue.title"
         class="w-full bg-inherit flex-none px-12 pt-10 pb-5 outline-none text-4xl font-bold dark:text-sky-100/95 text-slate-900"
         placeholder="Write Post Title Here..."
+        :value="modelValue.title"
+        @input="
+          $emit('update:modelValue', {
+            title: $event.target.value,
+            text: modelValue.text,
+          })
+        "
       />
 
       <editor-menu
@@ -15,7 +21,11 @@
         class="h-fit px-12 py-2 flex-none bg-purple-100 dark:bg-slate-900 sticky top-0 z-10"
       />
 
-      <editor-content :editor="editor" class="grow mx-12" />
+      <editor-content
+        :editor="editor"
+        class="grow mx-12"
+        @click="editor.view.focus()"
+      />
     </ClientOnly>
   </div>
 </template>
@@ -24,11 +34,15 @@
 import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 
+type Usage = 'create' | 'update';
+
 const prop = defineProps<{
   modelValue: {
     title: string;
     text: string;
   };
+
+  mode: Usage;
 }>();
 
 const emit = defineEmits(['update:modelValue']);
@@ -37,8 +51,8 @@ const editor = useEditor({
   content: prop.modelValue.text,
   extensions: [StarterKit],
   onUpdate: () => {
-    console.log(editor.value.getHTML());
     emit('update:modelValue', {
+      title: prop.modelValue.title,
       text: editor.value.getHTML(),
     });
   },
