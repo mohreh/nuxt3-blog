@@ -6,10 +6,11 @@
     </div>
     <div class="py-2 px-8 flex flex-row space-x-4 grow mb-3">
       <editor-tiptap
+        v-model="body"
         class="w-2/3 overflow-auto relative"
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
-      <div class="w-1/3"></div>
+      <div class="w-1/3 text-white">{{ body }}</div>
     </div>
   </div>
 </template>
@@ -19,6 +20,8 @@ definePageMeta({
   middleware: 'signed',
   layout: 'empt',
 });
+
+const body = ref('<p>Start writing here...</p>');
 
 const nav = ref();
 const height = ref(0);

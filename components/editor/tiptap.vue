@@ -14,7 +14,7 @@
         class="h-fit px-12 py-2 flex-none bg-purple-100 dark:bg-slate-900 sticky top-0 z-10"
       />
 
-      <editor-content :editor="editor" class="grow mx-12" @click="focus" />
+      <editor-content :editor="editor" class="grow mx-12" />
     </ClientOnly>
   </div>
 </template>
@@ -23,12 +23,16 @@
 import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 
-const editor = useEditor({
-  content: '<p>Start writing here...</p>',
-  extensions: [StarterKit],
-});
+const prop = defineProps<{ modelValue: string }>();
+const emit = defineEmits(['update:modelValue']);
 
-const focus = () => editor.value.view.focus();
+const editor = useEditor({
+  content: prop.modelValue,
+  extensions: [StarterKit],
+  onUpdate: () => {
+    emit('update:modelValue', editor.value.getHTML());
+  },
+});
 </script>
 
 <style lang="postcss">
