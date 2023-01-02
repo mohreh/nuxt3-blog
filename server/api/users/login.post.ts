@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { RegisterData } from '~~/nuxt';
 import jwt from '~~/server/utils/jwt';
 
 const prisma = new PrismaClient();

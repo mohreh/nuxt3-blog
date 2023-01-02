@@ -1,3 +1,4 @@
+import { ResponseData, UserInterface } from '~~/nuxt';
 import { useUserStore } from '~~/store/user';
 
 export default defineNuxtRouteMiddleware(async (_to) => {

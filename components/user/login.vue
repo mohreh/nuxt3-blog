@@ -3,9 +3,11 @@ import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
 
-const body = ref({});
+const body = ref({
+  username: undefined as unknown as string,
+  password: undefined as unknown as string,
+});
 const pending = ref(false);
-const errors = ref('');
 const router = useRouter();
 
 // Classes
@@ -23,32 +25,14 @@ const textClasses = {
 
 const submitHandler = async () => {
   pending.value = true;
-  const { data, error } = await useFetch<ResponseData<UserInterface>>(
-    '/api/users/login',
-    {
-      method: 'POST',
-      body: body.value,
-    },
-  );
+  await userStore.login(body.value);
 
-  if (!data.value?.ok) {
-    errors.value = data.value?.error
-      ? 'Internal server Error:' + data.value.error
-      : 'Client Error: ' + error.value;
-  } else {
-    userStore.$patch({
-      ...data.value.data,
-    });
-    router.push('/');
-  }
+  router.push('/');
 };
 </script>
 
 <template>
-  <p v-if="errors" class="text-red-600 dark:text-red-400 text-lg py-2">
-    {{ errors }}
-  </p>
-  <div v-else>
+  <div>
     <FormKit
       v-model="body"
       type="form"

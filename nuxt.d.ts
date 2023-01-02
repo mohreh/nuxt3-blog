@@ -1,3 +1,5 @@
+import { Post } from '@prisma/client';
+
 declare global {
   namespace nitro {
     interface H3EventContext {
@@ -20,7 +22,7 @@ interface JwtPayload {
 
 interface ResponseData<T> {
   ok: boolean;
-  message?: string;
+  message: string;
   data?: T;
 }
 
