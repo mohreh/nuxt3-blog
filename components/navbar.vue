@@ -1,19 +1,19 @@
 <template>
   <div id="navbar">
     <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
-    <div class="text-md flex flex-row dark:text-sky-100">
+    <div class="flex flex-row text-md dark:text-sky-100">
       <div
-        class="border-l border-slate-900/10 dark:border-slate-50/10 my-1"
+        class="my-1 border-l border-slate-900/10 dark:border-slate-50/10"
       ></div>
 
       <ClientOnly>
         <div v-if="userStore.$state.username" class="flex flex-row">
-          <user-profile class="pl-3 py-1 w-5" @logout="logout" />
-          <div class="ml-3 pl-3 py-1">
+          <user-profile class="py-1 pl-3 w-5" @logout="logout" />
+          <div class="py-1 pl-3 ml-3">
             <ArrowRightOnRectangleIcon class="icon" @click="logout" />
           </div>
         </div>
-        <p v-else class="pl-3 py-1">
+        <p v-else class="py-1 pl-3">
           <nuxt-link to="/login-register">
             <ArrowLeftOnRectangleIcon class="icon" />
           </nuxt-link>

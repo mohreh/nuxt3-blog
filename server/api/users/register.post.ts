@@ -34,9 +34,11 @@ export default defineEventHandler(async (event) => {
       data: user,
     };
   } catch (err) {
+    let message = 'Unknown Error';
+    if (err instanceof Error) message = err.message;
     return {
       ok: false,
-      error: err.message,
+      message,
     };
   }
 });

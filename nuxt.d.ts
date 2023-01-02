@@ -1,3 +1,14 @@
+declare global {
+  namespace nitro {
+    interface H3EventContext {
+      auth: {
+        username: string;
+        role: Role;
+      };
+    }
+  }
+}
+
 interface RegisterData {
   username: string;
   password: string;
@@ -11,7 +22,6 @@ interface ResponseData<T> {
   ok: boolean;
   message?: string;
   data?: T;
-  error?: string;
 }
 
 interface UserInterface {

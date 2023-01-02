@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     if (!user) {
       return {
         ok: false,
-        error: 'you must login first.',
+        message: 'you must login first.',
       };
     }
 
@@ -31,10 +31,11 @@ export default defineEventHandler(async (event) => {
       data: post,
     };
   } catch (err) {
-    console.log(err);
+    let message = 'Unknown Error';
+    if (err instanceof Error) message = err.message;
     return {
       ok: false,
-      error: err.message,
+      message,
     };
   }
 });

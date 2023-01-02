@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { objectPick } from '@vueuse/core';
 import jwt from '../utils/jwt';
 
 const prisma = new PrismaClient();
@@ -17,7 +16,8 @@ export default defineEventHandler(async (event) => {
     });
 
     event.context.auth = {
-      ...objectPick(user, ['username', 'role']),
+      username: user?.username,
+      role: user?.role,
     };
   }
 });

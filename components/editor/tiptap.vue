@@ -1,16 +1,16 @@
 <template>
   <div
-    class="flex flex-col border rounded-lg border-slate-900/10 dark:border-slate-50/5 space-y-5 h-96 overflow-y-auto"
+    class="flex overflow-y-auto flex-col space-y-5 h-96 rounded-lg border border-slate-900/10 dark:border-slate-50/5"
   >
     <ClientOnly>
       <input
         type="text"
-        class="w-full bg-inherit flex-none px-12 pt-10 pb-5 outline-none text-4xl font-bold dark:text-sky-100/95 text-slate-900"
+        class="flex-none px-12 pt-10 pb-5 w-full text-4xl font-bold outline-none bg-inherit text-slate-900 dark:text-sky-100/95"
         placeholder="Write Post Title Here..."
         :value="modelValue.title"
         @input="
           $emit('update:modelValue', {
-            title: $event.target.value,
+            title: $event.target?.value,
             text: modelValue.text,
           })
         "
@@ -18,12 +18,12 @@
 
       <editor-menu
         :editor="editor"
-        class="h-fit px-12 py-2 flex-none bg-purple-100 dark:bg-slate-900 sticky top-0 z-10"
+        class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-100 h-fit dark:bg-slate-900"
       />
 
       <editor-content
         :editor="editor"
-        class="grow mx-12"
+        class="mx-12 grow"
         @click="editor?.view.focus()"
       />
     </ClientOnly>

@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware(async (_to) => {
   const userStore = useUserStore();
 
   const res = await $fetch<ResponseData<UserInterface>>('/api/users/me', {
-    headers: useRequestHeaders(['cookie']),
+    // headers: useRequestHeaders(['cookie']),
   });
 
   if (res.ok) {

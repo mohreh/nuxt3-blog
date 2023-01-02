@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     if (!user) {
       return {
         ok: false,
-        error: 'no user registered in with this username!',
+        message: 'no user registered in with this username!',
       };
     }
 
@@ -39,12 +39,14 @@ export default defineEventHandler(async (event) => {
 
     return {
       ok: false,
-      error: 'password is wrong.',
+      message: 'password is wrong.',
     };
   } catch (err) {
+    let message = 'Unknown Error';
+    if (err instanceof Error) message = err.message;
     return {
       ok: false,
-      error: err.message,
+      message,
     };
   }
 });
