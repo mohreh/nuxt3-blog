@@ -1,15 +1,15 @@
 <template>
-  <div class="flex flex-row space-x-4 h-full mt-5">
-    <section class="flex-none w-64 space-y-4">
+  <div class="flex flex-row mt-5 space-x-4 h-full">
+    <section class="flex-none space-y-4 w-64">
       <ClientOnly>
         <user-welcome v-if="!userStore.username" />
       </ClientOnly>
 
-      <div class="bordered p-2">
+      <div class="p-2 bordered">
         <h3>Famous Topics</h3>
       </div>
 
-      <div class="bordered p-2">
+      <div class="p-2 bordered">
         <h3>Footer stuff</h3>
       </div>
     </section>
@@ -18,12 +18,12 @@
       <h3>Posts</h3>
     </section>
 
-    <section class="flex-none w-64 space-y-4">
-      <div class="bordered p-2">
+    <section class="flex-none space-y-4 w-64">
+      <div class="p-2 bordered">
         <h3>Top writers</h3>
       </div>
 
-      <div class="bordered p-2">
+      <div class="p-2 bordered">
         <h3>Trends</h3>
       </div>
     </section>

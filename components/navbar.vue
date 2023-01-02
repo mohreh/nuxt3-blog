@@ -10,12 +10,12 @@
         <div v-if="userStore.$state.username" class="flex flex-row">
           <user-profile class="pl-3 py-1 w-5" @logout="logout" />
           <div class="ml-3 pl-3 py-1">
-            <LogoutIcon class="icon" @click="logout" />
+            <ArrowRightOnRectangleIcon class="icon" @click="logout" />
           </div>
         </div>
         <p v-else class="pl-3 py-1">
           <nuxt-link to="/login-register">
-            <LoginIcon class="icon" />
+            <ArrowLeftOnRectangleIcon class="icon" />
           </nuxt-link>
         </p>
       </ClientOnly>
@@ -26,10 +26,14 @@
 </template>
 
 <script lang="ts" setup>
-import { LoginIcon, LogoutIcon } from '@heroicons/vue/outline';
+import {
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon,
+} from '@heroicons/vue/24/outline';
 import { useUserStore } from '~~/store/user';
 
 const userStore = useUserStore();
+
 const logout = () => {
   const accessToken = useCookie('access_token');
   accessToken.value = null;

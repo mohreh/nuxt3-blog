@@ -1,6 +1,6 @@
 <template>
   <button
-    class="menu-item p-2 m-1"
+    class="p-2 m-1 menu-item"
     :class="
       isActive
         ? isActive()
@@ -12,9 +12,9 @@
     @click="action"
   >
     <nuxt-icon
-      :name="'Editor' + iconName"
+      :name="iconName"
       class="text-2xl fill-slate-800 dark:fill-sky-100"
-      fill
+      filled
     />
   </button>
 </template>
@@ -27,5 +27,5 @@ const props = defineProps<{
   isActive?: () => boolean;
 }>();
 
-const iconName = props.icon.charAt(0).toUpperCase() + props.icon.slice(1);
+const iconName = 'editor/' + props.icon;
 </script>

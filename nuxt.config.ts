@@ -1,13 +1,4 @@
-import { defineNuxtConfig } from 'nuxt';
-
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  meta: {
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { type: 'text/css', href: '/assests/css/tailwindcss.css' },
-    ],
-  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
@@ -17,6 +8,14 @@ export default defineNuxtConfig({
   ],
   build: {
     transpile: ['@heroicons/vue'],
+  },
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config',
+    exposeConfig: false,
+    // config: {},
+    injectPosition: 0,
+    viewer: true,
   },
   vite: {
     optimizeDeps: {

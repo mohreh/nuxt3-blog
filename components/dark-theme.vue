@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { SunIcon, MoonIcon } from '@heroicons/vue/outline';
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
 const darkTheme = useDark();
 const toggleDark = useToggle(darkTheme);
 </script>

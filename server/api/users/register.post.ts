@@ -6,11 +6,11 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   try {
-    const { username, password } = await useBody<RegisterData>(event);
+    const { username, password } = await readBody<RegisterData>(event);
 
     const hashedPassword = bcrypt.hashSync(
       password,
-      parseInt(process.env.SALT_ROUNDS),
+      parseInt(process.env.SALT_ROUNDS as string),
     );
 
     const user = await prisma.user.create({

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ChevronRightIcon } from '@heroicons/vue/outline';
+import { ChevronRightIcon } from '@heroicons/vue/24/outline';
 </script>
 
 <style lang="postcss" scoped>

@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   try {
-    const { username, password } = await useBody<RegisterData>(event);
+    const { username, password } = await readBody<RegisterData>(event);
 
     const user = await prisma.user.findUnique({
       where: {

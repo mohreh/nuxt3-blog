@@ -31,8 +31,8 @@ const submitHandler = async () => {
     },
   );
 
-  if (!data.value.ok) {
-    errors.value = data.value.error
+  if (!data.value?.ok) {
+    errors.value = data.value?.error
       ? 'Internal server Error:' + data.value.error
       : 'Client Error: ' + error.value;
   } else {

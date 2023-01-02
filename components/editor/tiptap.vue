@@ -24,7 +24,7 @@
       <editor-content
         :editor="editor"
         class="grow mx-12"
-        @click="editor.view.focus()"
+        @click="editor?.view.focus()"
       />
     </ClientOnly>
   </div>
@@ -53,7 +53,7 @@ const editor = useEditor({
   onUpdate: () => {
     emit('update:modelValue', {
       title: prop.modelValue.title,
-      text: editor.value.getHTML(),
+      text: editor.value?.getHTML(),
     });
   },
 });

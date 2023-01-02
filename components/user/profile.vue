@@ -47,7 +47,7 @@
           </div>
           <div class="py-1">
             <div class="px-4 py-2 hovered icon-group" @click="logout">
-              <LogoutIcon class="w-4" />
+              <ArrowLeftOnRectangleIcon class="w-4" />
               <p>Sing out</p>
             </div>
           </div>
@@ -60,10 +60,10 @@
 import {
   UserCircleIcon,
   PencilIcon,
-  LogoutIcon,
+  ArrowLeftOnRectangleIcon,
   BellIcon,
   UserGroupIcon,
-} from '@heroicons/vue/outline';
+} from '@heroicons/vue/24/outline';
 import { useUserStore } from '~~/store/user';
 
 const userStore = useUserStore();
