@@ -1,6 +1,8 @@
 <template>
   <div id="navbar">
-    <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
+    <nuxt-link to="/">
+      <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
+    </nuxt-link>
     <div class="flex flex-row text-md dark:text-sky-100">
       <div
         class="my-1 border-l border-slate-900/10 dark:border-slate-50/10"

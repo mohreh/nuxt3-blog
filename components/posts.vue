@@ -1,15 +1,19 @@
 <template>
   <div>
     <div v-for="post in posts" :key="post.id" class="post bordered">
-      <div class="flex flex-row gap-5 pb-2">
+      <div class="flex flex-row gap-3 pb-2">
+        <nuxt-link :to="'/' + post.author.username">
+          <p class="text-blue-600 dark:text-blue-300 small">
+            {{ post.author.username }}
+          </p>
+        </nuxt-link>
         <p class="text-slate-600 small dark:text-slate-500">
           {{ new Date(post.createdAt).toDateString() }}
         </p>
-        <p class="text-blue-600 dark:text-blue-300 small">
-          {{ post.author.username }}
-        </p>
       </div>
-      <h3 class="post-title">{{ post.title }}</h3>
+      <nuxt-link :to="'/' + post.author.username + '/' + post.title">
+        <h3 class="post-title">{{ post.title }}</h3>
+      </nuxt-link>
       <div>
         <div class="post-text" v-html="post.text"></div>
       </div>
