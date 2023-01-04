@@ -28,7 +28,7 @@ const { posts } = storeToRefs(postStore);
 
 <style lang="postcss">
 .post-title {
-  @apply dark:text-white text-xl font-bold border-none p-0 m-0;
+  @apply dark:text-white text-xl font-bold border-none p-0 m-0 inline cursor-pointer hover:text-blue-600 dark:hover:text-blue-300;
 }
 
 .post {

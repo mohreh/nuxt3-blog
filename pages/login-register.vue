@@ -1,13 +1,13 @@
 <template>
-  <div class="w-screen h-screen flex justify-center items-center">
+  <div class="flex justify-center items-center w-screen h-screen">
     <div
-      class="max-h-fit max-w-lg w-full border rounded-lg p-3 shadow-lg dark:shadow-2xl border-slate-800/10 dark:border-slate-50/[0.06]"
+      class="p-3 w-full max-w-lg rounded-lg border shadow-lg dark:shadow-2xl max-h-fit border-slate-800/10 dark:border-slate-50/[0.06]"
     >
       <div class="titles">
-        <h1 :class="forRegister ? 'bold' : 'light'" @click="toggleStatus">
+        <h1 :class="forRegister ?'bold' : 'light'" @click="toggleStatus">
           Register
         </h1>
-        <h1 :class="forRegister ? 'light' : 'bold'" @click="toggleStatus">
+        <h1 :class="forRegister ?'light' : 'bold'" @click="toggleStatus">
           Login
         </h1>
       </div>
