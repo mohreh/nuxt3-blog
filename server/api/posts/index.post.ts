@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     const post = await prisma.post.create({
       data: {
         ...body,
-        authorId: user.id,
+        authorId: user.username,
       },
     });
 

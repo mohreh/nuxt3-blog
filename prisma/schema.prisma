@@ -11,7 +11,6 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
   password String
   username String @unique
   role Role @default(User)
@@ -19,6 +18,8 @@ model User {
   createdAt DateTime @default(now())
 
   posts Post[]
+
+  @@id(username)
 }
 
 enum Role {
@@ -27,7 +28,7 @@ enum Role {
 }
 
 model Post {
-  id String @id @default(cuid())
+  id Int @id @default(autoincrement())
   title String
   text String
   coverImage String?
@@ -37,6 +38,8 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 
-  author User @relation(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [username])
   authorId String
+
+  @@unique([title, authorId])
 }
