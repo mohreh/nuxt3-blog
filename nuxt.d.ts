@@ -31,7 +31,19 @@ interface UserInterface {
   role: Role;
 }
 
+interface PostInterface extends Post {
+  createdAt: string;
+  author: {
+    username: string;
+  };
+}
+
 enum Role {
   User = 'User',
   Admin = 'Admin',
+}
+
+interface CreatePost {
+  title: string;
+  text: string;
 }

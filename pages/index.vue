@@ -14,8 +14,9 @@
       </div>
     </section>
 
-    <section class="bordered grow">
-      <h3>Posts</h3>
+    <section class="p-2 grow">
+      <h2 class="pb-0 border-none">Posts</h2>
+      <Posts />
     </section>
 
     <section class="flex-none space-y-4 w-64">
@@ -31,6 +32,7 @@
 </template>
 
 <script lang="ts" setup>
+import { usePostStore } from '~~/store/posts';
 import { useUserStore } from '~~/store/user';
 
 definePageMeta({
@@ -38,6 +40,8 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
+const postStore = usePostStore();
+await postStore.fetchAll();
 </script>
 
 <style lang="postcss">
@@ -46,10 +50,18 @@ section {
 }
 
 h3 {
-  @apply dark:text-white text-xl font-bold;
+  @apply dark:text-white text-xl font-bold pb-1 mb-2 border-b border-slate-200 dark:border-slate-700;
+}
+
+h2 {
+  @apply dark:text-white text-2xl font-bold pb-1 mb-2 border-b border-slate-200 dark:border-slate-700;
 }
 
 .bordered {
   @apply border border-slate-900/10 dark:border-slate-50/[0.06] rounded-lg;
+}
+
+p {
+  @apply dark:text-white text-base;
 }
 </style>

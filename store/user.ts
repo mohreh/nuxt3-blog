@@ -16,7 +16,6 @@ export const useUserStore = defineStore('user', {
           body,
         },
       );
-      console.log(message);
 
       this.$patch({
         ...data,
@@ -36,7 +35,6 @@ export const useUserStore = defineStore('user', {
           body,
         },
       );
-      console.log(message);
 
       this.$patch({
         ...data,

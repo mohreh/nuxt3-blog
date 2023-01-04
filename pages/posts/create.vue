@@ -6,7 +6,9 @@
     >
       <div class="flex flex-row items-end space-x-12">
         <h1 class="text-3xl font-semibold">NuxtBlog</h1>
-        <h2 class="text-xl font-semibold dark:text-sky-100">Create New Post</h2>
+        <h2 class="p-0 m-0 text-xl font-semibold border-none dark:text-sky-100">
+          Create New Post
+        </h2>
       </div>
       <div>
         <button
@@ -25,12 +27,20 @@
         class="overflow-auto relative w-2/3"
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
-      <div class="w-1/3 text-white">{{ body.title }} {{ body.text }}</div>
+      <div class="w-1/3 text-white">
+        <h2>{{ body.title }}</h2>
+        <div v-html="body.text"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { usePostStore } from '~~/store/posts';
+
+const router = useRouter();
+const postStore = usePostStore();
+
 definePageMeta({
   middleware: 'signed',
   layout: 'empt',
@@ -49,11 +59,7 @@ onMounted(() => {
 });
 
 const publish = async () => {
-  const { data, message } = await useFetch('/api/posts', {
-    method: 'POST',
-    body: body.value,
-  });
-
-  console.log(data.value, message);
+  await postStore.create(body.value);
+  router.push('/');
 };
 </script>
