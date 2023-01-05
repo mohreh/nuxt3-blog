@@ -35,6 +35,7 @@ export default defineEventHandler(async (event) => {
       return {
         ok: true,
         data: user,
+        message: `welcome back ${user.username}`,
       };
     }
 

@@ -4,6 +4,7 @@
     <div class="container z-0">
       <slot />
     </div>
+    <alert></alert>
   </div>
 </template>
 

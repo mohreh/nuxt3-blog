@@ -16,7 +16,7 @@ export const usePostStore = defineStore('post', {
 
       const alertStore = useAlertStore();
       if (!ok) {
-        alertStore.alert(true, ok, message);
+        alertStore.alert(ok, message);
       }
 
       if (data) {
@@ -32,7 +32,7 @@ export const usePostStore = defineStore('post', {
         body,
       });
 
-      alertStore.alert(true, ok, message ?? '');
+      alertStore.alert(ok, message ?? '');
 
       await this.fetchAll();
     },

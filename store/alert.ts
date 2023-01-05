@@ -8,12 +8,16 @@ export const useAlertStore = defineStore('alert', {
   }),
 
   actions: {
-    alert(show: boolean, status: boolean, message: string) {
+    alert(status: boolean, message: string) {
       this.$patch({
-        show,
+        show: true,
         status,
         message,
       });
+
+      setTimeout(() => {
+        this.show = false;
+      }, 3000);
     },
   },
 });

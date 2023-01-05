@@ -32,14 +32,17 @@ import {
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/vue/24/outline';
+import { useAlertStore } from '~~/store/alert';
 import { useUserStore } from '~~/store/user';
 
 const userStore = useUserStore();
+const alertStore = useAlertStore();
 
 const logout = () => {
   const accessToken = useCookie('access_token');
   accessToken.value = null;
   userStore.$reset();
+  alertStore.alert(true, 'see you later.');
 };
 </script>
 

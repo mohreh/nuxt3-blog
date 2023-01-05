@@ -28,7 +28,7 @@
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
       <div class="w-1/3 text-white">
-        <h2>{{ body.title }}</h2>
+        <h2>{{ body.title || 'title' }}</h2>
         <div v-html="body.text"></div>
       </div>
     </div>
@@ -36,10 +36,12 @@
 </template>
 
 <script lang="ts" setup>
+import { useAlertStore } from '~~/store/alert';
 import { usePostStore } from '~~/store/posts';
 
 const router = useRouter();
 const postStore = usePostStore();
+const alertStore = useAlertStore();
 
 definePageMeta({
   middleware: 'signed',
@@ -59,7 +61,11 @@ onMounted(() => {
 });
 
 const publish = async () => {
-  await postStore.create(body.value);
-  router.push('/');
+  if (body.value.title.length == 0) {
+    alertStore.alert(false, 'Make sure to add title to your post');
+  } else {
+    await postStore.create(body.value);
+    router.push('/');
+  }
 };
 </script>

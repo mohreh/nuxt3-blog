@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { RegisterData, ResponseData, Role, UserInterface } from '~~/nuxt';
+import { useAlertStore } from './alert';
 
 export const useUserStore = defineStore('user', {
   state: (): UserInterface => ({
@@ -21,6 +22,9 @@ export const useUserStore = defineStore('user', {
         ...data,
       });
 
+      const alertStore = useAlertStore();
+      alertStore.alert(ok, message);
+
       return {
         message,
         ok,
@@ -39,6 +43,9 @@ export const useUserStore = defineStore('user', {
       this.$patch({
         ...data,
       });
+
+      const alertStore = useAlertStore();
+      alertStore.alert(ok, message);
 
       return {
         message,
