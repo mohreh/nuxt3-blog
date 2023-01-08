@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const post = await prisma.post.findUnique({
       where: {
         title_authorId: {
-          title: event.context.params.title,
+          title: event.context.params.title.split('_').join(' '),
           authorId: event.context.params.author,
         },
       },
