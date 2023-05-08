@@ -1,4 +1,4 @@
-import { personas } from "@dicebear/collection";
+import { funEmoji } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
@@ -16,8 +16,9 @@ export default defineEventHandler(async (event) => {
       parseInt(process.env.SALT_ROUNDS as string),
     );
 
-    const image = createAvatar(personas, {
+    const image = createAvatar(funEmoji, {
       seed: username,
+      radius: 50,
     });
     const avatar = image.toString();
 

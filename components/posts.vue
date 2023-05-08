@@ -1,21 +1,26 @@
 <template>
   <div>
-    <div v-for="post in posts" :key="post.id" class="post bordered">
-      <div class="flex flex-row gap-3 pb-2">
-        <nuxt-link :to="'/' + post.author.username">
-          <p class="text-blue-600 dark:text-blue-300 small">
-            {{ post.author.username }}
-          </p>
-        </nuxt-link>
-        <p class="text-slate-600 small dark:text-slate-500">
-          {{ new Date(post.createdAt).toDateString() }}
-        </p>
-      </div>
-      <nuxt-link :to="'/' + post.author.username + '/' + post.title.split(' ').join('_')">
-        <h3 class="post-title">{{ post.title }}</h3>
-      </nuxt-link>
+    <div v-for="post in posts" :key="post.id" class="flex flex-row gap-3 post bordered">
+      <div v-html="post.author.avatar" class="w-10 h-10" />
       <div>
-        <div class="post-text" v-html="post.text"></div>
+        <div class="flex flex-col pb-2">
+          <nuxt-link :to="'/' + post.author.username">
+            <p class="text-blue-600 dark:text-blue-300 small">
+              {{ post.author.username }}
+            </p>
+          </nuxt-link>
+          <p class="text-slate-600 small dark:text-slate-500">
+            {{ new Date(post.createdAt).toDateString() }}
+          </p>
+        </div>
+        <nuxt-link :to="
+  '/' + post.author.username + '/' + post.title.split(' ').join('_')
+">
+          <h3 class="post-title">{{ post.title }}</h3>
+        </nuxt-link>
+        <div>
+          <div class="post-text" v-html="post.text"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -59,10 +64,8 @@ const { posts } = storeToRefs(postStore);
 
 .dark {
   .post-title {
-    &:dark {
-      &:hover {
-        @apply text-pink-50;
-      }
+    &:hover {
+      @apply text-blue-300;
     }
   }
 

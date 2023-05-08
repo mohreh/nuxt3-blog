@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -13,11 +13,12 @@ export default defineEventHandler(async (_event) => {
         author: {
           select: {
             username: true,
+            avatar: true,
           },
         },
       },
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
 
@@ -26,7 +27,7 @@ export default defineEventHandler(async (_event) => {
       data: posts,
     };
   } catch (err) {
-    let message = 'Unknown Error';
+    let message = "Unknown Error";
     if (err instanceof Error) message = err.message;
 
     return {
