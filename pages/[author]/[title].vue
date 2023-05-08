@@ -3,6 +3,7 @@
     Hello world
     {{ post }}
   </div>
+  <div v-html="post?.author.avatar"></div>
   <div v-if="`!ok`">
     goodbye
     <h1>{{ message }}</h1>

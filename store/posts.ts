@@ -6,7 +6,7 @@ import { useAlertStore } from "./alert";
 export const usePostStore = defineStore("post", {
   state: () => ({
     posts: [] as PostInterface[],
-    fetched_posts: [] as Post[],
+    fetched_posts: [] as PostInterface[],
   }),
 
   actions: {
@@ -17,7 +17,7 @@ export const usePostStore = defineStore("post", {
 
       const alertStore = useAlertStore();
       if (!ok) {
-        alertStore.alert(ok, message);
+        alertStore.alert(ok, message ?? "");
       }
 
       if (data) {
@@ -41,7 +41,7 @@ export const usePostStore = defineStore("post", {
     async fetch_post(
       author: string,
       title: string,
-    ): Promise<ResponseData<Post>> {
+    ): Promise<ResponseData<PostInterface>> {
       const post = this.fetched_posts.find((post) => {
         return post.title === title && post.authorId === author;
       });
@@ -53,7 +53,7 @@ export const usePostStore = defineStore("post", {
         };
       }
 
-      let { ok, message, data } = await $fetch<ResponseData<Post>>(
+      let { ok, message, data } = await $fetch<ResponseData<PostInterface>>(
         `/api/users/${author}/${title}`,
       );
 
@@ -67,10 +67,10 @@ export const usePostStore = defineStore("post", {
         };
       }
 
-      this.fetched_posts.push(data as Post);
+      this.fetched_posts.push(data as PostInterface);
       return {
         ok: true,
-        data: data as Post,
+        data,
       };
     },
   },

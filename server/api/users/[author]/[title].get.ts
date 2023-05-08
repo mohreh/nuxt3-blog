@@ -7,8 +7,16 @@ export default defineEventHandler(async (event) => {
     const post = await prisma.post.findUnique({
       where: {
         title_authorId: {
-          title: event.context.params.title.split("_").join(" "),
-          authorId: event.context.params.author,
+          title: event.context.params?.title.split("_").join(" ") as string,
+          authorId: event.context.params?.author as string,
+        },
+      },
+      include: {
+        author: {
+          select: {
+            username: true,
+            avatar: true,
+          },
         },
       },
     });
@@ -17,7 +25,7 @@ export default defineEventHandler(async (event) => {
       return {
         ok: false,
         message:
-          `Post with title: ${event.context.params.title} and author: ${event.context.params.author} doesn't exist.`,
+          `Post with title: ${event.context.params?.title} and author: ${event.context.params?.author} doesn't exist.`,
       };
     }
 

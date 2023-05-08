@@ -35,6 +35,7 @@ interface PostInterface extends Post {
   createdAt: string;
   author: {
     username: string;
+    avatar: string;
   };
 }
 

@@ -14,8 +14,9 @@ model User {
   password String
   username String @unique
   role Role @default(User)
+  avatar String
 
-  createdAt DateTime @default(now())
+  registeredAt DateTime @default(now())
 
   posts Post[]
 
