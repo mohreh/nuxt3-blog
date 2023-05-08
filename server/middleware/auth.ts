@@ -1,23 +1,27 @@
-import { PrismaClient } from '@prisma/client';
-import jwt from '../utils/jwt';
+import { PrismaClient } from "@prisma/client";
+import jwt from "../utils/jwt";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const accessToken = getCookie(event, 'access_token');
+  const accessToken = getCookie(event, "access_token");
 
   if (accessToken) {
-    const { sub } = jwt.verifyToken(accessToken);
+    try {
+      const { sub } = jwt.verifyToken(accessToken);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        username: sub,
-      },
-    });
+      const user = await prisma.user.findUnique({
+        where: {
+          username: sub,
+        },
+      });
 
-    event.context.auth = {
-      username: user?.username,
-      role: user?.role,
-    };
+      event.context.auth = {
+        username: user?.username,
+        role: user?.role,
+      };
+    } catch (error) {
+      setCookie(event, "access_token", "");
+    }
   }
 });
