@@ -1,12 +1,12 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   try {
-    const post = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
-        username: event.context.params.author,
+        username: event.context.params?.author,
       },
       select: {
         username: true,
@@ -16,10 +16,10 @@ export default defineEventHandler(async (event) => {
 
     return {
       ok: true,
-      data: post,
+      data: user,
     };
   } catch (err) {
-    let message = 'Unknown Error';
+    let message = "Unknown Error";
     if (err instanceof Error) message = err.message;
 
     return {
