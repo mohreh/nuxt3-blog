@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useAlertStore = defineStore('alert', {
+export const useAlertStore = defineStore("alert", {
   state: () => ({
     show: false,
     status: false,
@@ -8,7 +8,7 @@ export const useAlertStore = defineStore('alert', {
   }),
 
   actions: {
-    alert(status: boolean, message: string) {
+    alert(status: boolean, message: string, timeout: number = 3000) {
       this.$patch({
         show: true,
         status,
@@ -17,7 +17,7 @@ export const useAlertStore = defineStore('alert', {
 
       setTimeout(() => {
         this.show = false;
-      }, 3000);
+      }, timeout);
     },
   },
 });
