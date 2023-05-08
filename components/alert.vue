@@ -18,7 +18,7 @@ const alertStore = useAlertStore();
 
 <style lang="postcss" scoped>
 .alert {
-  @apply rounded-lg w-fit fixed bottom-5 right-10 px-5 py-3 backdrop-blur-2xl z-10 font-semibold text-black/70 flex flex-row gap-2;
+  @apply rounded-lg w-fit fixed bottom-5 right-10 px-5 py-3 backdrop-blur-2xl z-10 font-semibold text-black/70 flex flex-row gap-3 items-center;
 }
 
 .danger {

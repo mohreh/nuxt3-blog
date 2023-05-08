@@ -60,7 +60,7 @@ export const usePostStore = defineStore("post", {
       const alertStore = useAlertStore();
       if (!ok) {
         message = message + "\n Returning to Home";
-        alertStore.alert(false, message, 7000);
+        alertStore.alert(false, message, 5000);
         return {
           ok: false,
           message,

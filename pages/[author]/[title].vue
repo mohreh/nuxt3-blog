@@ -26,7 +26,7 @@ const {
 
 if (!ok) {
   setTimeout(() => {
-    router.push(router.getRoutes()[0]);
+    router.push('/');
   }, 2000);
 }
 </script>
