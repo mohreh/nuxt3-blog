@@ -2,12 +2,28 @@
   <div>
     Hello world
     {{ post }}
-    {{ message }}
+  </div>
+  <div v-if="`!ok`">
+    goodbye
+    <h1>{{ message }}</h1>
   </div>
 </template>
 <script setup lang="ts">
+import { usePostStore } from '~~/store/posts';
+
 const route = useRoute();
-const { message, data: post } = await $fetch(
-  `/api/users/${route.params.author}/${route.params.title}`,
-);
+const router = useRouter();
+const postStore = usePostStore();
+
+const {
+  ok,
+  message,
+  data: post,
+} = await postStore.fetch_post(route.params.author, route.params.title);
+
+if (!ok) {
+  setTimeout(() => {
+    router.push(router.getRoutes()[0]);
+  }, 2000);
+}
 </script>

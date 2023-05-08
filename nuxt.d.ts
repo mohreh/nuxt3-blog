@@ -1,4 +1,4 @@
-import { Post } from '@prisma/client';
+import { Post } from "@prisma/client";
 
 declare global {
   namespace nitro {
@@ -22,7 +22,7 @@ interface JwtPayload {
 
 interface ResponseData<T> {
   ok: boolean;
-  message: string;
+  message?: string;
   data?: T;
 }
 
@@ -39,8 +39,8 @@ interface PostInterface extends Post {
 }
 
 enum Role {
-  User = 'User',
-  Admin = 'Admin',
+  User = "User",
+  Admin = "Admin",
 }
 
 interface CreatePost {
