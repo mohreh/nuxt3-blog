@@ -50,18 +50,32 @@ section {
 }
 
 h3 {
-  @apply dark:text-white text-xl font-bold pb-1 mb-2 border-b border-slate-200 dark:border-slate-700;
+  @apply text-xl font-bold pb-1 mb-2 border-b border-slate-200;
+
+  &:dark {
+    @apply border-slate-700;
+  }
 }
 
 h2 {
-  @apply dark:text-white text-2xl font-bold pb-1 mb-2 border-b border-slate-200 dark:border-slate-700;
+  @apply text-2xl font-bold pb-1 mb-2 border-b border-slate-200;
+
+  &:dark {
+    @apply border-slate-700;
+  }
 }
 
 .bordered {
-  @apply border border-slate-900/10 dark:border-slate-50/[0.06] rounded-lg;
+  @apply border border-slate-900/10 rounded-lg;
+
+  &:dark {
+    @apply border-slate-50/[0.06];
+  }
 }
 
 p {
-  @apply dark:text-white text-base;
+  &:dark {
+    @apply text-white text-base;
+  }
 }
 </style>
