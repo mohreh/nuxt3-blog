@@ -1,31 +1,20 @@
 <template>
   <div
-    class="flex overflow-y-auto flex-col space-y-5 h-96 rounded-lg border border-slate-900/10 dark:border-slate-50/5"
-  >
+    class="flex overflow-y-auto flex-col space-y-5 h-96 rounded-lg border border-slate-900/10 dark:border-slate-50/5">
     <ClientOnly>
-      <input
-        type="text"
+      <input type="text"
         class="flex-none px-12 pt-10 pb-5 w-full text-4xl font-bold outline-none bg-inherit text-slate-900 dark:text-sky-100/95"
-        placeholder="Write Post Title Here..."
-        :value="modelValue.title"
-        @input="
-          $emit('update:modelValue', {
-            title: $event.target?.value,
-            text: modelValue.text,
-          })
-        "
-      />
+        placeholder="Write Post Title Here..." :value="modelValue.title" @input="
+  $emit('update:modelValue', {
+    title: $event.target?.value,
+    text: modelValue.text,
+  })
+" />
 
-      <editor-menu
-        :editor="editor"
-        class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-100 h-fit dark:bg-slate-900"
-      />
+      <editor-menu :editor="editor"
+        class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-200/50 h-fit dark:bg-slate-900" />
 
-      <editor-content
-        :editor="editor"
-        class="mx-12 grow"
-        @click="editor?.view.focus()"
-      />
+      <editor-content :editor="editor" class="mx-12 grow" @click="editor?.view.focus()" />
     </ClientOnly>
   </div>
 </template>
@@ -61,7 +50,7 @@ const editor = useEditor({
 
 <style lang="postcss">
 .ProseMirror {
-  @apply outline-none text-slate-900 dark:text-sky-100 text-xl tracking-wider font-medium leading-relaxed;
+  @apply outline-none text-slate-900 text-xl tracking-wider font-medium leading-relaxed;
 
   h2 {
     @apply font-bold text-3xl;
@@ -86,6 +75,7 @@ const editor = useEditor({
   ul,
   ol {
     @apply list-inside;
+
     li {
       p {
         @apply inline;
@@ -94,14 +84,15 @@ const editor = useEditor({
   }
 
   pre {
-    @apply bg-slate-300/50 dark:bg-black/40 px-4 py-5 rounded-lg text-base;
+    @apply bg-slate-300/50 px-4 py-5 rounded-lg text-base;
+
     code {
       @apply bg-inherit p-0;
     }
   }
 
   blockquote {
-    @apply px-4 mx-7 my-4 border-l-4 border-sky-100/20;
+    @apply px-4 mx-7 my-4 border-l-4 border-sky-800/10;
   }
 
   code {
@@ -109,7 +100,21 @@ const editor = useEditor({
   }
 
   hr {
-    @apply content-none m-7 border-t-0 border-b-2 border-slate-900/10 dark:border-sky-100/10;
+    @apply content-none m-7 border-t-0 border-b-2 border-slate-900/10;
+  }
+}
+
+.dark {
+  .ProseMirror {
+    @apply text-sky-100;
+
+    pre {
+      @apply bg-black/40;
+    }
+
+    hr {
+      @apply border-sky-100/10;
+    }
   }
 }
 </style>

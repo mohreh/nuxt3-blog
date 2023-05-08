@@ -11,9 +11,7 @@
           {{ new Date(post.createdAt).toDateString() }}
         </p>
       </div>
-      <nuxt-link
-        :to="'/' + post.author.username + '/' + post.title.split(' ').join('_')"
-      >
+      <nuxt-link :to="'/' + post.author.username + '/' + post.title.split(' ').join('_')">
         <h3 class="post-title">{{ post.title }}</h3>
       </nuxt-link>
       <div>
@@ -34,23 +32,50 @@ const { posts } = storeToRefs(postStore);
 
 <style lang="postcss">
 .post-title {
-  @apply dark:text-white text-xl font-bold border-none p-0 m-0 inline cursor-pointer hover:text-blue-600 dark:hover:text-blue-300;
+  @apply text-xl font-bold border-none p-0 m-0 inline cursor-pointer;
+
+  &:hover {
+    @apply text-blue-600;
+  }
 }
 
 .post {
-  @apply my-3 dark:border-slate-700 p-3;
+  @apply my-3 p-3 border;
 }
 
 .small {
-  @apply text-xs;
+  @apply text-sm;
 }
 
-.post-text > *:not(:first-child) {
+.post-text>*:not(:first-child) {
   @apply hidden;
 }
 
-.post-text > p:first-child:after {
-  @apply text-slate-500 dark:text-slate-600;
+.post-text>p:first-child:after {
+  @apply text-slate-500;
+
   content: ' click title to read more...';
+}
+
+.dark {
+  .post-title {
+    &:dark {
+      &:hover {
+        @apply text-pink-50;
+      }
+    }
+  }
+
+  .small {
+    @apply text-sm;
+  }
+
+  .post {
+    @apply border-slate-700;
+  }
+
+  .post-text>p:first-child:after {
+    @apply text-slate-600;
+  }
 }
 </style>

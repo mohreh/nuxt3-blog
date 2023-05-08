@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col h-full">
-    <div
-      ref="nav"
-      class="flex flex-row justify-between items-end py-4 pr-8 pl-8 w-2/3 h-fit text-slate-900 dark:text-sky-100"
-    >
+    <div ref="nav"
+      class="flex flex-row justify-between items-end py-4 pr-8 pl-8 w-2/3 h-fit text-slate-900 dark:text-sky-100">
       <div class="flex flex-row items-end space-x-12">
         <h1 class="text-3xl font-semibold">NuxtBlog</h1>
         <h2 class="p-0 m-0 text-xl font-semibold border-none dark:text-sky-100">
@@ -11,23 +9,17 @@
         </h2>
       </div>
       <div>
-        <button
-          class="py-1 px-4 text-lg font-semibold text-indigo-50 rounded-lg bg-sky-600/80 hover:bg-sky-600/90"
-          @click="publish"
-        >
+        <button class="py-1 px-4 text-lg font-semibold text-indigo-50 rounded-lg bg-sky-600/80 hover:bg-sky-600/90"
+          @click="publish">
           Publish
         </button>
       </div>
     </div>
 
     <div class="flex flex-row py-2 px-8 mb-3 space-x-8 grow">
-      <editor-tiptap
-        v-model="body"
-        mode="create"
-        class="overflow-auto relative w-2/3"
-        :style="`height: calc(100vh - ${height}px - 1.5rem);`"
-      />
-      <div class="w-1/3 text-white">
+      <editor-tiptap v-model="body" mode="create" class="overflow-auto relative w-2/3"
+        :style="`height: calc(100vh - ${height}px - 1.5rem);`" />
+      <div class="w-1/3 dark:text-white">
         <h2>{{ body.title || 'title' }}</h2>
         <div v-html="body.text"></div>
       </div>

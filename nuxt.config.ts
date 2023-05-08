@@ -1,17 +1,19 @@
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    '@formkit/nuxt',
-    '@pinia/nuxt',
-    'nuxt-icons',
+    "@nuxtjs/tailwindcss",
+    "@vueuse/nuxt",
+    "@formkit/nuxt",
+    "@pinia/nuxt",
+    "nuxt-icon",
+    "nuxt-icons",
   ],
+
   build: {
-    transpile: ['@heroicons/vue'],
+    transpile: [],
   },
   tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
-    configPath: 'tailwind.config',
+    cssPath: "~/assets/css/tailwind.css",
+    configPath: "tailwind.config",
     exposeConfig: false,
     // config: {},
     injectPosition: 0,
@@ -19,7 +21,7 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['@heroicons/vue/solid', '@heroicons/vue/outline', 'vue'],
+      include: ["vue"],
     },
   },
 });

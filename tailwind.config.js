@@ -1,14 +1,14 @@
 module.exports = {
   content: [
-    './app.vue',
-    './pages/**/*.vue',
-    './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './assets/**/*.scss',
-    './assets/**/*.css',
+    "./app.vue",
+    "./pages/**/*.vue",
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./assets/**/*.scss",
+    "./assets/**/*.css",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {},
   },

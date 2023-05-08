@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center justify-between">
+  <div class="flex flex-row justify-between items-center">
     <ClientOnly>
       <div v-for="(item, index) in items" :key="index">
         <div v-if="item.type === 'divider'" class="divider" />
@@ -143,6 +143,12 @@ const items: (Item | { type: string })[] = [
 
 <style lang="postcss" scoped>
 .divider {
-  @apply border-l border-slate-900/10 dark:border-slate-50/10 h-5;
+  @apply border-l border-slate-900/10 h-5;
+}
+
+.dark {
+  .divider {
+    @apply border-slate-50/10;
+  }
 }
 </style>

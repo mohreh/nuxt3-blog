@@ -19,7 +19,10 @@ const {
   ok,
   message,
   data: post,
-} = await postStore.fetch_post(route.params.author, route.params.title);
+} = await postStore.fetch_post(
+  route.params.author as string,
+  route.params.title as string,
+);
 
 if (!ok) {
   setTimeout(() => {

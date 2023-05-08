@@ -29,12 +29,14 @@ const toggleStatus = () => {
 </script>
 
 <style lang="postcss" scoped>
-.titles {
-  @apply flex flex-row my-5 justify-between text-3xl font-semibold;
-
-  &:dark {
+.dark {
+  .titles {
     @apply text-sky-100;
   }
+}
+
+.titles {
+  @apply flex flex-row my-5 justify-between text-3xl font-semibold;
 }
 
 h1 {
