@@ -3,6 +3,7 @@
     <div v-click-outside="hideDropdown" class="relative">
       <div @click="toggleDropdown">
         <Icon name="heroicons:user-circle" class="icon" />
+        <div v-html="userStore.avatar" class="w-0 h-0"></div>
       </div>
 
       <transition enter-active-class="transition duration-100 ease-out" enter-from-class="opacity-0 transform scale-95"
@@ -12,10 +13,10 @@
           class="absolute -right-4 mt-1 w-56 rounded-md border divide-y shadow-lg bg-slate-50/[0.06] border-slate-700/10 backdrop-blur-xl divide-slate-700/10 dark:bg-slate-600/[0.06] dark:border-slate-50/[0.06] dark:divide-slate-50/[0.06]">
           <div class="py-1">
             <div class="icon-group">
-              <Icon name="heroicons:user-circle" class="w-4" />
+              <!-- <Icon name="heroicons:user-circle" class="w-5" /> -->
+              <div v-html="userStore.avatar" class="my-1 w-6 h-6"></div>
               <div class="flex flex-row items-center space-x-1">
-                <p>username:</p>
-                <h4 class="text-lg font-semibold">
+                <h4 class="text-lg">
                   {{ userStore.username }}
                 </h4>
               </div>

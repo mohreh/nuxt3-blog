@@ -8,12 +8,12 @@
 
       <ClientOnly>
         <div v-if="userStore.$state.username" class="flex flex-row">
-          <user-profile class="py-1 pl-3 w-5" @logout="logout" />
-          <div class="py-1 pl-3 ml-3">
+          <user-profile class="py-1 ml-3 w-6" @logout="logout" />
+          <div class="pl-3 my-1">
             <Icon name="heroicons:arrow-right-on-rectangle" class="icon" @click="logout" />
           </div>
         </div>
-        <p v-else class="py-1 pl-3">
+        <p v-else class="pl-3 my-1">
           <nuxt-link to="/login-register">
             <Icon name="heroicons:arrow-left-on-rectangle" class="icon" />
           </nuxt-link>
@@ -46,7 +46,7 @@ const logout = () => {
 }
 
 .icon {
-  @apply w-5;
+  @apply w-6;
 
   &:hover {
     @apply cursor-pointer text-sky-900;
