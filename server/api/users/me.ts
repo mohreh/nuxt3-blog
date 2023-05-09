@@ -8,6 +8,6 @@ export default defineEventHandler((event) => {
 
   return {
     ok: false,
-    message: `you're not loged in`,
+    message: `you're not logged in`,
   };
 });

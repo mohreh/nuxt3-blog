@@ -29,6 +29,7 @@ interface ResponseData<T> {
 interface UserInterface {
   username: string;
   role: Role;
+  avatar: string;
 }
 
 interface PostInterface extends Post {

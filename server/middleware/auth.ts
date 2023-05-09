@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
       event.context.auth = {
         username: user?.username,
         role: user?.role,
+        avatar: user?.avatar,
       };
     } catch (error) {
       setCookie(event, "access_token", "");

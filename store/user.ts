@@ -1,19 +1,20 @@
-import { defineStore } from 'pinia';
-import { RegisterData, ResponseData, Role, UserInterface } from '~~/nuxt';
-import { useAlertStore } from './alert';
+import { defineStore } from "pinia";
+import { RegisterData, ResponseData, Role, UserInterface } from "~~/nuxt";
+import { useAlertStore } from "./alert";
 
-export const useUserStore = defineStore('user', {
+export const useUserStore = defineStore("user", {
   state: (): UserInterface => ({
     username: undefined as unknown as string,
     role: undefined as unknown as Role,
+    avatar: undefined as unknown as string,
   }),
 
   actions: {
     async register(body: RegisterData) {
       const { ok, data, message } = await $fetch<ResponseData<UserInterface>>(
-        '/api/users/register',
+        "/api/users/register",
         {
-          method: 'POST',
+          method: "POST",
           body,
         },
       );
@@ -23,7 +24,7 @@ export const useUserStore = defineStore('user', {
       });
 
       const alertStore = useAlertStore();
-      alertStore.alert(ok, message);
+      alertStore.alert(ok, message ?? "");
 
       return {
         message,
@@ -33,9 +34,9 @@ export const useUserStore = defineStore('user', {
 
     async login(body: RegisterData) {
       const { ok, data, message } = await $fetch<ResponseData<UserInterface>>(
-        '/api/users/login',
+        "/api/users/login",
         {
-          method: 'POST',
+          method: "POST",
           body,
         },
       );
@@ -45,7 +46,7 @@ export const useUserStore = defineStore('user', {
       });
 
       const alertStore = useAlertStore();
-      alertStore.alert(ok, message);
+      alertStore.alert(ok, message ?? "");
 
       return {
         message,
