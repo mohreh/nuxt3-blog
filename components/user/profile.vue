@@ -2,6 +2,7 @@
   <div>
     <div v-click-outside="hideDropdown" class="relative">
       <div @click="toggleDropdown">
+        <!-- refactor these lines later  -->
         <Icon name="heroicons:user-circle" class="icon" />
         <div v-html="userStore.avatar" class="w-0 h-0"></div>
       </div>
