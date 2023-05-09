@@ -29,12 +29,6 @@ const toggleStatus = () => {
 </script>
 
 <style lang="postcss" scoped>
-.dark {
-  .titles {
-    @apply text-sky-100;
-  }
-}
-
 .titles {
   @apply flex flex-row my-5 justify-between text-3xl font-semibold;
 }
@@ -45,10 +39,6 @@ h1 {
 
 .bold {
   @apply text-slate-900;
-
-  &:dark {
-    @apply text-slate-300;
-  }
 }
 
 .light {
@@ -57,8 +47,18 @@ h1 {
   &:hover {
     @apply text-sky-700;
   }
+}
 
-  &:dark {
+.dark {
+  .titles {
+    @apply text-sky-100;
+  }
+
+  .bold {
+    @apply text-slate-300;
+  }
+
+  .light {
     @apply text-slate-600;
 
     &:hover {
