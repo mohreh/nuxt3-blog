@@ -1,6 +1,7 @@
 <template>
   <div>
     {{ author }}
+    {{ $route.params.author }}
   </div>
 </template>
 
