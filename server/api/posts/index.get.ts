@@ -8,6 +8,7 @@ export default defineEventHandler(async (_event) => {
       id: true,
       text: true,
       title: true,
+      slug: true,
       createdAt: true,
       author: {
         select: {
