@@ -3,40 +3,36 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  try {
-    const body = await readBody(event);
+  const user = await prisma.user.findUnique({
+    where: {
+      username: event.context.auth.username,
+    },
+  });
 
-    const user = await prisma.user.findUnique({
-      where: {
-        username: event.context.auth.username,
-      },
+  if (!user) {
+    throw createError({
+      statusCode: 401,
+      message: "Unauthorized.",
     });
-
-    if (!user) {
-      return {
-        ok: false,
-        message: "you must login first.",
-      };
-    }
-
-    const post = await prisma.post.create({
-      data: {
-        ...body,
-        authorId: user.username,
-      },
-    });
-
-    return {
-      ok: true,
-      message: "created successfully",
-      data: post,
-    };
-  } catch (err) {
-    let message = "Unknown Error";
-    if (err instanceof Error) message = err.message;
-    return {
-      ok: false,
-      message,
-    };
   }
+
+  const body = await readBody(event);
+
+  const post = await prisma.post.create({
+    data: {
+      ...body,
+      slug: (body.title as string)
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, ""),
+      authorId: user.username,
+    },
+  });
+
+  // todo
+  return {
+    ok: true,
+    message: "created successfully",
+    data: post,
+  };
 });

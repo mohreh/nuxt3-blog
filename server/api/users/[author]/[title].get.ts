@@ -24,10 +24,10 @@ export default defineEventHandler(async (event) => {
     });
 
     if (!post) {
-      return {
-        ok: false,
+      throw createError({
+        statusCode: 404,
         message: `Post with title: ${event.context.params?.title} and author: ${event.context.params?.author} doesn't exist.`,
-      };
+      });
     }
 
     return {

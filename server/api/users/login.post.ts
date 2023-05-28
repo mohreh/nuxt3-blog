@@ -6,49 +6,41 @@ import jwt from "~~/server/utils/jwt";
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  try {
-    const { username, password } = await readBody<RegisterData>(event);
+  const { username, password } = await readBody<RegisterData>(event);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
+  const user = await prisma.user.findUnique({
+    where: {
+      username,
+    },
+  });
+
+  if (!user) {
+    throw createError({
+      statusCode: 404,
+      message: "username doesn't exists",
+    });
+  }
+
+  if (bcrypt.compareSync(password, user.password)) {
+    const accessToken = jwt.signPayload({
+      sub: user.username,
     });
 
-    if (!user) {
-      return {
-        ok: false,
-        message: "no user registered in with this username!",
-      };
-    }
+    setCookie(event, "access_token", accessToken, {
+      secure: true,
+      sameSite: true,
+    });
 
-    if (bcrypt.compareSync(password, user.password)) {
-      const accessToken = jwt.signPayload({
-        sub: user.username,
-      });
-
-      setCookie(event, "access_token", accessToken, {
-        secure: true,
-        sameSite: true,
-      });
-
-      return {
-        ok: true,
-        data: user,
-        message: `welcome back ${user.username}`,
-      };
-    }
-
+    // todo
     return {
-      ok: false,
-      message: "password is wrong.",
-    };
-  } catch (err) {
-    let message = "Unknown Error";
-    if (err instanceof Error) message = err.message;
-    return {
-      ok: false,
-      message,
+      ok: true,
+      data: user,
+      message: `welcome back ${user.username}`,
     };
   }
+
+  throw createError({
+    statusCode: 400,
+    message: "password is wrong",
+  });
 });
