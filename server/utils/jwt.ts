@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import { JwtPayload } from "~~/nuxt";
+import jwt from 'jsonwebtoken';
+import { JwtPayload } from '~~/nuxt';
 
 export default {
   signPayload: (payload: Record<string, unknown>) => {

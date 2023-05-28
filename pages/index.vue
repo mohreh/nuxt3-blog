@@ -32,11 +32,11 @@
 </template>
 
 <script lang="ts" setup>
-import { usePostStore } from '~~/store/posts';
-import { useUserStore } from '~~/store/user';
+import { usePostStore } from "~~/store/posts";
+import { useUserStore } from "~~/store/user";
 
 definePageMeta({
-  layout: 'default',
+  layout: "default",
 });
 
 const userStore = useUserStore();

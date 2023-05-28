@@ -1,5 +1,4 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -13,8 +12,8 @@ datasource db {
 model User {
   password String
   username String @unique
-  role Role @default(User)
-  avatar String
+  role     Role   @default(User)
+  avatar   String
 
   registeredAt DateTime @default(now())
 
@@ -29,17 +28,17 @@ enum Role {
 }
 
 model Post {
-  id Int @id @default(autoincrement())
-  title String
-  text String
+  id         Int      @id @default(autoincrement())
+  title      String
+  text       String
   coverImage String?
-  hashtags String[]
-  views Int @default(0)
+  hashtags   String[]
+  views      Int      @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 
-  author User @relation(fields: [authorId], references: [username])
+  author   User   @relation(fields: [authorId], references: [username])
   authorId String
 
   @@unique([title, authorId])

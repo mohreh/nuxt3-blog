@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/user';
-import { ResponseData } from '~/nuxt';
 
 const userStore = useUserStore();
 
@@ -44,32 +43,63 @@ const submitHandler = async () => {
 
 <template>
   <div>
-    <FormKit v-model="body" type="form" submit-label="Register" :classes="{
-  actions: `text-center text-lg rounded-xl transition cursor-pointer ${pending
-      ? 'bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-slate-400'
-      : 'bg-blue-800 dark:bg-blue-800 text-slate-100 hover:bg-blue-900'
-    } `,
-  message: 'text-lg text-red-500 pb-2',
-  label: 'my-2',
-}" incomplete-message="please fill all fields correctly." :config="{ validationVisibility: 'submit' }"
-      @submit="submitHandler">
-      <FormKit type="text" name="username" class="my-5" label="Your username:" placeholder="username"
-        :classes="textClasses" validation-visibility="live"
+    <FormKit
+      v-model="body"
+      type="form"
+      submit-label="Register"
+      :classes="{
+        actions: `text-center text-lg rounded-xl transition cursor-pointer ${
+          pending
+            ? 'bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-slate-400'
+            : 'bg-blue-800 dark:bg-blue-800 text-slate-100 hover:bg-blue-900'
+        } `,
+        message: 'text-lg text-red-500 pb-2',
+        label: 'my-2',
+      }"
+      incomplete-message="please fill all fields correctly."
+      :config="{ validationVisibility: 'submit' }"
+      @submit="submitHandler"
+    >
+      <FormKit
+        type="text"
+        name="username"
+        class="my-5"
+        label="Your username:"
+        placeholder="username"
+        :classes="textClasses"
+        validation-visibility="live"
         validation="required|length:5|matches:/^\S*$/|alphanumeric:latin|(500)username_exists"
-        :validation-rules="{ username_exists }" :validation-messages="{
-  required: 'name is required.',
-  username_exists: 'username already exists',
-}" />
+        :validation-rules="{ username_exists }"
+        :validation-messages="{
+          required: 'name is required.',
+          username_exists: 'username already exists',
+        }"
+      />
 
-      <FormKit type="password" name="password" label="Your password:" placeholder="Password"
-        validation="required|length:6|matches:/[^a-zA-Z]/" :validation-messages="{
-  required: 'password is required.',
-  length: 'password at least must contain 6 characters.',
-  matches: 'Please include at least one symbol.',
-}" :classes="textClasses" validation-visibility="submit" />
+      <FormKit
+        type="password"
+        name="password"
+        label="Your password:"
+        placeholder="Password"
+        validation="required|length:6|matches:/[^a-zA-Z]/"
+        :validation-messages="{
+          required: 'password is required.',
+          length: 'password at least must contain 6 characters.',
+          matches: 'Please include at least one symbol.',
+        }"
+        :classes="textClasses"
+        validation-visibility="submit"
+      />
 
-      <FormKit type="password" name="password_confirm" label="Confirm password:" placeholder="Confirm password"
-        validation="required|confirm|length:6" :classes="textClasses" validation-visibility="submit" />
+      <FormKit
+        type="password"
+        name="password_confirm"
+        label="Confirm password:"
+        placeholder="Confirm password"
+        validation="required|confirm|length:6"
+        :classes="textClasses"
+        validation-visibility="submit"
+      />
     </FormKit>
   </div>
 </template>

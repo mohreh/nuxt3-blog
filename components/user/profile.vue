@@ -4,18 +4,26 @@
       <div @click="toggleDropdown">
         <!-- refactor these lines later  -->
         <Icon name="heroicons:user-circle" class="icon" />
-        <div v-html="userStore.avatar" class="w-0 h-0"></div>
+        <div class="w-0 h-0" v-html="userStore.avatar"></div>
       </div>
 
-      <transition enter-active-class="transition duration-100 ease-out" enter-from-class="opacity-0 transform scale-95"
-        enter-to-class="opacity-100 transform scale-100" leave-active-class="transition duration-75 ease-in"
-        leave-from-class="opacity-100 transform scale-100" leave-to-class="opacity-0 transform scale-95">
-        <div id="dropdown" :class="hide ? 'transition hidden' : ''"
-          class="absolute -right-4 mt-1 w-56 rounded-md border divide-y shadow-lg bg-slate-50/[0.06] border-slate-700/10 backdrop-blur-xl divide-slate-700/10 dark:bg-slate-600/[0.06] dark:border-slate-50/[0.06] dark:divide-slate-50/[0.06]">
+      <transition
+        enter-active-class="transition duration-100 ease-out"
+        enter-from-class="opacity-0 transform scale-95"
+        enter-to-class="opacity-100 transform scale-100"
+        leave-active-class="transition duration-75 ease-in"
+        leave-from-class="opacity-100 transform scale-100"
+        leave-to-class="opacity-0 transform scale-95"
+      >
+        <div
+          id="dropdown"
+          :class="hide ?'transition hidden' : ''"
+          class="absolute -right-4 mt-1 w-56 rounded-md border divide-y shadow-lg bg-slate-50/[0.06] border-slate-700/10 backdrop-blur-xl divide-slate-700/10 dark:bg-slate-600/[0.06] dark:border-slate-50/[0.06] dark:divide-slate-50/[0.06]"
+        >
           <div class="py-1">
             <div class="icon-group">
               <!-- <Icon name="heroicons:user-circle" class="w-5" /> -->
-              <div v-html="userStore.avatar" class="my-1 w-6 h-6"></div>
+              <div class="my-1 w-6 h-6" v-html="userStore.avatar"></div>
               <div class="flex flex-row items-center space-x-1">
                 <h4 class="text-lg">
                   {{ userStore.username }}

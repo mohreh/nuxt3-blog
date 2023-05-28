@@ -1,7 +1,8 @@
 <template>
   <div class="flex justify-center items-center w-screen h-screen">
     <div
-      class="p-3 w-full max-w-lg rounded-lg border shadow-lg dark:shadow-2xl max-h-fit border-slate-800/10 dark:border-slate-50/[0.06]">
+      class="p-3 w-full max-w-lg rounded-lg border shadow-lg dark:shadow-2xl max-h-fit border-slate-800/10 dark:border-slate-50/[0.06]"
+    >
       <div class="titles">
         <h1 :class="forRegister ? 'bold' : 'light'" @click="toggleStatus">
           Register
@@ -19,7 +20,7 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'empt',
+  layout: "empt",
 });
 
 const forRegister = ref(true);

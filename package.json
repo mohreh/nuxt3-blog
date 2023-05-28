@@ -4,7 +4,9 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix **/**.vue",
+    "format": "prettier .  --write"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.6.7",

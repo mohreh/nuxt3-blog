@@ -10,7 +10,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { usePostStore } from '~~/store/posts';
+import { usePostStore } from "~~/store/posts";
 
 const route = useRoute();
 const router = useRouter();
@@ -27,7 +27,7 @@ const {
 
 if (!ok) {
   setTimeout(() => {
-    router.push('/');
+    router.push("/");
   }, 2000);
 }
 </script>
