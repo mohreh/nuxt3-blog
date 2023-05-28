@@ -18,19 +18,29 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event);
+  body.slug = slugify(body.title);
+
+  const existingPostWithSameSlug = await prisma.post.findFirst({
+    where: {
+      title: body.title,
+    },
+  });
+
+  if (existingPostWithSameSlug) {
+    throw createError({
+      statusCode: 409,
+      statusMessage:
+        "you have already writed a post with this title, change it if you wish.",
+    });
+  }
 
   const post = await prisma.post.create({
     data: {
       ...body,
-      slug: slugify(body.title),
       authorId: user.username,
     },
   });
 
   // todo
-  return {
-    ok: true,
-    message: "created successfully",
-    data: post,
-  };
+  return post;
 });

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   build: {
     transpile: [],
   },
+
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     configPath: "tailwind.config",
@@ -19,6 +20,7 @@ export default defineNuxtConfig({
     injectPosition: 0,
     viewer: true,
   },
+
   vite: {
     optimizeDeps: {
       include: ["vue"],
