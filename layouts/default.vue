@@ -4,7 +4,7 @@
     <div class="container z-0">
       <slot />
     </div>
-    <alert></alert>
+    <LazyAlert />
   </div>
 </template>
 

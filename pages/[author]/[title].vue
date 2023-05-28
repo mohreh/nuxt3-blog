@@ -15,6 +15,7 @@ import { usePostStore } from "~~/store/posts";
 const route = useRoute();
 const router = useRouter();
 const postStore = usePostStore();
+console.log(route.params.authro, route.params.title);
 
 const {
   ok,

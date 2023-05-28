@@ -8,7 +8,7 @@
       <div class="w-10 h-10" v-html="post.author.avatar" />
       <div>
         <div class="flex flex-col pb-2">
-          <nuxt-link :to="'/user-' + post.author.username">
+          <nuxt-link :to="post.author.username">
             <p class="text-blue-600 dark:text-blue-300 small">
               {{ post.author.username }}
             </p>
@@ -18,12 +18,7 @@
           </p>
         </div>
         <nuxt-link
-          :to="
-            '/user-' +
-            post.author.username +
-            '/post-' +
-            post.title.split(' ').join('_')
-          "
+          :to="post.author.username + post.title.split(' ').join('_')"
         >
           <h3 class="post-title">{{ post.title }}</h3>
         </nuxt-link>
