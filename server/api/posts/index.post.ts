@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
 
     return {
       ok: true,
-      message: "created successfuly",
+      message: "created successfully",
       data: post,
     };
   } catch (err) {
