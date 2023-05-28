@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import slugify from "@sindresorhus/slugify";
 
 const prisma = new PrismaClient();
 
@@ -21,10 +22,7 @@ export default defineEventHandler(async (event) => {
   const post = await prisma.post.create({
     data: {
       ...body,
-      slug: (body.title as string)
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, ""),
+      slug: slugify(body.title),
       authorId: user.username,
     },
   });
