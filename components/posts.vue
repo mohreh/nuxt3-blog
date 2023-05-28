@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div v-for="post in posts" :key="post.id" class="flex flex-row gap-3 post bordered">
-      <div v-html="post.author.avatar" class="w-10 h-10" />
+    <div
+      v-for="post in posts"
+      :key="post.id"
+      class="flex flex-row gap-3 post bordered"
+    >
+      <div class="w-10 h-10" v-html="post.author.avatar" />
       <div>
         <div class="flex flex-col pb-2">
           <nuxt-link :to="'/user-' + post.author.username">
@@ -13,12 +17,14 @@
             {{ new Date(post.createdAt).toDateString() }}
           </p>
         </div>
-        <nuxt-link :to="
-  '/user-' +
-  post.author.username +
-  '/post-' +
-  post.title.split(' ').join('_')
-">
+        <nuxt-link
+          :to="
+            '/user-' +
+            post.author.username +
+            '/post-' +
+            post.title.split(' ').join('_')
+          "
+        >
           <h3 class="post-title">{{ post.title }}</h3>
         </nuxt-link>
         <div>
@@ -30,8 +36,8 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { usePostStore } from '~~/store/posts';
+import { storeToRefs } from "pinia";
+import { usePostStore } from "~~/store/posts";
 
 const postStore = usePostStore();
 
@@ -55,14 +61,14 @@ const { posts } = storeToRefs(postStore);
   @apply text-sm;
 }
 
-.post-text>*:not(:first-child) {
+.post-text > *:not(:first-child) {
   @apply hidden;
 }
 
-.post-text>p:first-child:after {
+.post-text > p:first-child:after {
   @apply text-slate-500;
 
-  content: ' click title to read more...';
+  content: " click title to read more...";
 }
 
 .dark {
@@ -80,7 +86,7 @@ const { posts } = storeToRefs(postStore);
     @apply border-slate-700;
   }
 
-  .post-text>p:first-child:after {
+  .post-text > p:first-child:after {
     @apply text-slate-600;
   }
 }

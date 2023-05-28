@@ -17,7 +17,7 @@
       >
         <div
           id="dropdown"
-          :class="hide ?'transition hidden' : ''"
+          :class="hide ? 'transition hidden' : ''"
           class="absolute -right-4 mt-1 w-56 rounded-md border divide-y shadow-lg bg-slate-50/[0.06] border-slate-700/10 backdrop-blur-xl divide-slate-700/10 dark:bg-slate-600/[0.06] dark:border-slate-50/[0.06] dark:divide-slate-50/[0.06]"
         >
           <div class="py-1">
@@ -49,7 +49,10 @@
           </div>
           <div class="py-1">
             <div class="py-2 px-4 icon-group hovered" @click="logout">
-              <Icon name="heroicons:arrow-right-on-rectangle" class="icon" />
+              <Icon
+                name="heroicons:arrow-right-on-rectangle"
+                class="icon"
+              />
               <p>Sing out</p>
             </div>
           </div>
@@ -59,11 +62,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useUserStore } from '~~/store/user';
+import { useUserStore } from "~~/store/user";
 
 const userStore = useUserStore();
 
-const emit = defineEmits(['logout']);
+const emit = defineEmits(["logout"]);
 
 const hide = ref(true);
 const toggleDropdown = () => {
@@ -71,7 +74,7 @@ const toggleDropdown = () => {
 };
 const hideDropdown = () => (hide.value = true);
 
-const logout = () => emit('logout');
+const logout = () => emit("logout");
 </script>
 
 <style lang="postcss" scoped>

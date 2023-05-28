@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     if (!user) {
       return {
         ok: false,
-        message: 'you must login first.',
+        message: "you must login first.",
       };
     }
 
@@ -28,11 +28,11 @@ export default defineEventHandler(async (event) => {
 
     return {
       ok: true,
-      message: 'created successfuly',
+      message: "created successfuly",
       data: post,
     };
   } catch (err) {
-    let message = 'Unknown Error';
+    let message = "Unknown Error";
     if (err instanceof Error) message = err.message;
     return {
       ok: false,

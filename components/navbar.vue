@@ -4,13 +4,19 @@
       <h1 class="text-3xl font-semibold dark:text-sky-100">NuxtBlog</h1>
     </nuxt-link>
     <div class="flex flex-row text-md dark:text-sky-100">
-      <div class="my-1 border-l border-slate-900/10 dark:border-slate-50/10"></div>
+      <div
+        class="my-1 border-l border-slate-900/10 dark:border-slate-50/10"
+      ></div>
 
       <ClientOnly>
         <div v-if="userStore.$state.username" class="flex flex-row">
           <user-profile class="py-1 ml-3 w-6" @logout="logout" />
           <div class="pl-3 my-1">
-            <Icon name="heroicons:arrow-right-on-rectangle" class="icon" @click="logout" />
+            <Icon
+              name="heroicons:arrow-right-on-rectangle"
+              class="icon"
+              @click="logout"
+            />
           </div>
         </div>
         <p v-else class="pl-3 my-1">
@@ -26,17 +32,17 @@
 </template>
 
 <script lang="ts" setup>
-import { useAlertStore } from '~~/store/alert';
-import { useUserStore } from '~~/store/user';
+import { useAlertStore } from "~~/store/alert";
+import { useUserStore } from "~~/store/user";
 
 const userStore = useUserStore();
 const alertStore = useAlertStore();
 
 const logout = () => {
-  const accessToken = useCookie('access_token');
+  const accessToken = useCookie("access_token");
   accessToken.value = null;
   userStore.$reset();
-  alertStore.alert(true, 'see you later.');
+  alertStore.alert(true, "see you later.");
 };
 </script>
 

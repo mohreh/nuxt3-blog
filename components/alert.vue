@@ -1,8 +1,11 @@
 <template>
   <Transition>
-    <div v-if="alertStore.show" :class="alertStore.status ? 'success alert' : 'danger alert'">
-      <Icon name="heroicons:check" class="w-6" v-if="alertStore.status" />
-      <Icon name="heroicons:exclamation-triangle" class="w-6" v-else />
+    <div
+      v-if="alertStore.show"
+      :class="alertStore.status ? 'success alert' : 'danger alert'"
+    >
+      <Icon v-if="alertStore.status" name="heroicons:check" class="w-6" />
+      <Icon v-else name="heroicons:exclamation-triangle" class="w-6" />
       <p>
         {{ alertStore.message }}
       </p>
@@ -11,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAlertStore } from '~~/store/alert';
+import { useAlertStore } from "~~/store/alert";
 
 const alertStore = useAlertStore();
 </script>

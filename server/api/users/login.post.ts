@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import * as bcrypt from 'bcrypt';
-import { RegisterData } from '~~/nuxt';
-import jwt from '~~/server/utils/jwt';
+import { PrismaClient } from "@prisma/client";
+import * as bcrypt from "bcrypt";
+import { RegisterData } from "~~/nuxt";
+import jwt from "~~/server/utils/jwt";
 
 const prisma = new PrismaClient();
 
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     if (!user) {
       return {
         ok: false,
-        message: 'no user registered in with this username!',
+        message: "no user registered in with this username!",
       };
     }
 
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
         sub: user.username,
       });
 
-      setCookie(event, 'access_token', accessToken, {
+      setCookie(event, "access_token", accessToken, {
         secure: true,
         sameSite: true,
       });
@@ -41,10 +41,10 @@ export default defineEventHandler(async (event) => {
 
     return {
       ok: false,
-      message: 'password is wrong.',
+      message: "password is wrong.",
     };
   } catch (err) {
-    let message = 'Unknown Error';
+    let message = "Unknown Error";
     if (err instanceof Error) message = err.message;
     return {
       ok: false,

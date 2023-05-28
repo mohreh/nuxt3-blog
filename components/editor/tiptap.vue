@@ -1,29 +1,40 @@
 <template>
   <div
-    class="flex overflow-y-auto flex-col space-y-5 h-96 rounded-lg border border-slate-900/10 dark:border-slate-50/5">
+    class="flex overflow-y-auto flex-col space-y-5 h-96 rounded-lg border border-slate-900/10 dark:border-slate-50/5"
+  >
     <ClientOnly>
-      <input type="text"
+      <input
+        type="text"
         class="flex-none px-12 pt-10 pb-5 w-full text-4xl font-bold outline-none bg-inherit text-slate-900 dark:text-sky-100/95"
-        placeholder="Write Post Title Here..." :value="modelValue.title" @input="
-  $emit('update:modelValue', {
-    title: $event.target?.value,
-    text: modelValue.text,
-  })
-" />
+        placeholder="Write Post Title Here..."
+        :value="modelValue.title"
+        @input="
+          $emit('update:modelValue', {
+            title: $event.target?.value,
+            text: modelValue.text,
+          })
+        "
+      />
 
-      <editor-menu :editor="editor"
-        class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-200/50 h-fit dark:bg-slate-900" />
+      <editor-menu
+        :editor="editor"
+        class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-200/50 h-fit dark:bg-slate-900"
+      />
 
-      <editor-content :editor="editor" class="mx-12 grow" @click="editor?.view.focus()" />
+      <editor-content
+        :editor="editor"
+        class="mx-12 grow"
+        @click="editor?.view.focus()"
+      />
     </ClientOnly>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useEditor, EditorContent } from '@tiptap/vue-3';
-import StarterKit from '@tiptap/starter-kit';
+import { useEditor, EditorContent } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
 
-type Usage = 'create' | 'update';
+type Usage = "create" | "update";
 
 const prop = defineProps<{
   modelValue: {
@@ -34,13 +45,13 @@ const prop = defineProps<{
   mode: Usage;
 }>();
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 
 const editor = useEditor({
   content: prop.modelValue.text,
   extensions: [StarterKit],
   onUpdate: () => {
-    emit('update:modelValue', {
+    emit("update:modelValue", {
       title: prop.modelValue.title,
       text: editor.value?.getHTML(),
     });

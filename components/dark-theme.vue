@@ -1,8 +1,8 @@
 <template>
   <ClientOnly>
     <button class="my-1 ml-3 max-h-full" @click="toggleDark()">
-      <Icon name="heroicons:sun" v-if="darkTheme" class="icon" />
-      <Icon name="heroicons:moon" v-else class="icon" />
+      <Icon v-if="darkTheme" name="heroicons:sun" class="icon" />
+      <Icon v-else name="heroicons:moon" class="icon" />
     </button>
   </ClientOnly>
 </template>

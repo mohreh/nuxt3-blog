@@ -11,13 +11,12 @@ export const useUserStore = defineStore("user", {
 
   actions: {
     async register(body: RegisterData) {
-      const { ok, data, message } = await $fetch<ResponseData<UserInterface>>(
-        "/api/users/register",
-        {
-          method: "POST",
-          body,
-        },
-      );
+      const { ok, data, message } = await $fetch<
+        ResponseData<UserInterface>
+      >("/api/users/register", {
+        method: "POST",
+        body,
+      });
 
       this.$patch({
         ...data,
@@ -33,13 +32,12 @@ export const useUserStore = defineStore("user", {
     },
 
     async login(body: RegisterData) {
-      const { ok, data, message } = await $fetch<ResponseData<UserInterface>>(
-        "/api/users/login",
-        {
-          method: "POST",
-          body,
-        },
-      );
+      const { ok, data, message } = await $fetch<
+        ResponseData<UserInterface>
+      >("/api/users/login", {
+        method: "POST",
+        body,
+      });
 
       this.$patch({
         ...data,

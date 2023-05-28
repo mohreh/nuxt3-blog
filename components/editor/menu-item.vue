@@ -27,5 +27,5 @@ const props = defineProps<{
   isActive?: () => boolean;
 }>();
 
-const iconName = 'editor/' + props.icon;
+const iconName = "editor/" + props.icon;
 </script>

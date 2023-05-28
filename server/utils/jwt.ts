@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import { JwtPayload } from '~~/nuxt';
+import jwt from "jsonwebtoken";
+import { JwtPayload } from "~~/nuxt";
 
 export default {
   signPayload: (payload: Record<string, unknown>) => {
@@ -8,6 +8,9 @@ export default {
     });
   },
   verifyToken: (token: string): JwtPayload => {
-    return jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+    return jwt.verify(
+      token,
+      process.env.JWT_SECRET as string,
+    ) as JwtPayload;
   },
 };

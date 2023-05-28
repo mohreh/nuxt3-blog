@@ -11,9 +11,9 @@ export const usePostStore = defineStore("post", {
 
   actions: {
     async fetchAll() {
-      const { ok, message, data } = await $fetch<ResponseData<PostInterface[]>>(
-        "/api/posts",
-      );
+      const { ok, message, data } = await $fetch<
+        ResponseData<PostInterface[]>
+      >("/api/posts");
 
       const alertStore = useAlertStore();
       if (!ok) {
@@ -28,10 +28,13 @@ export const usePostStore = defineStore("post", {
     async create(body: CreatePost) {
       const alertStore = useAlertStore();
 
-      const { ok, message } = await $fetch<ResponseData<Post>>("/api/posts", {
-        method: "POST",
-        body,
-      });
+      const { ok, message } = await $fetch<ResponseData<Post>>(
+        "/api/posts",
+        {
+          method: "POST",
+          body,
+        },
+      );
 
       alertStore.alert(ok, message ?? "");
 
@@ -53,9 +56,9 @@ export const usePostStore = defineStore("post", {
         };
       }
 
-      let { ok, message, data } = await $fetch<ResponseData<PostInterface>>(
-        `/api/users/${author}/${title}`,
-      );
+      let { ok, message, data } = await $fetch<
+        ResponseData<PostInterface>
+      >(`/api/users/${author}/${title}`);
 
       const alertStore = useAlertStore();
       if (!ok) {

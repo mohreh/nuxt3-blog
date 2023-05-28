@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from '@/store/user';
+import { useUserStore } from "@/store/user";
 
 const userStore = useUserStore();
 
@@ -12,22 +12,22 @@ const router = useRouter();
 
 // Classes
 const textClasses = {
-  outer: 'my-5',
-  wrapper: 'text-gray-900 dark:text-gray-300',
-  label: 'text-base',
+  outer: "my-5",
+  wrapper: "text-gray-900 dark:text-gray-300",
+  label: "text-base",
   inner:
-    'w-full mt-1 bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg mb-1 overflow-hidden focus-within:border-blue-300',
+    "w-full mt-1 bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg mb-1 overflow-hidden focus-within:border-blue-300",
   input:
-    'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400 dark:bg-slate-800 dark:placeholder-gray-600 dark:text-gray-300',
-  help: 'text-xs text-gray-500',
-  message: 'text-xs text-red-500',
+    "w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400 dark:bg-slate-800 dark:placeholder-gray-600 dark:text-gray-300",
+  help: "text-xs text-gray-500",
+  message: "text-xs text-red-500",
 };
 
 const submitHandler = async () => {
   pending.value = true;
   await userStore.login(body.value);
 
-  router.push('/');
+  router.push("/");
 };
 </script>
 

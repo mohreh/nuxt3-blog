@@ -42,8 +42,7 @@ export default defineEventHandler(async (event) => {
     return {
       ok: true,
       data: user,
-      message:
-        `welcome ${user.username}, try writing your first post by clicking in your profile icon in the navbar`,
+      message: `welcome ${user.username}, try writing your first post by clicking in your profile icon in the navbar`,
     };
   } catch (err) {
     let message = "Unknown Error";

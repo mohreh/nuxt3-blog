@@ -4,7 +4,10 @@
     <p>start writing about your favorate topics and share ideas.</p>
     <nuxt-link to="/login-register" class="group link max-w-fit">
       <p class="font-semibold">create account</p>
-      <Icon name="heroicons:chevron-right" class="mt-1 w-4 group-hover:ml-1" />
+      <Icon
+        name="heroicons:chevron-right"
+        class="mt-1 w-4 group-hover:ml-1"
+      />
     </nuxt-link>
   </div>
 </template>
