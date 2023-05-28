@@ -17,9 +17,7 @@
             {{ new Date(post.createdAt).toDateString() }}
           </p>
         </div>
-        <nuxt-link
-          :to="post.author.username + post.title.split(' ').join('_')"
-        >
+        <nuxt-link :to="post.author.username + '/' + post.slug">
           <h3 class="post-title">{{ post.title }}</h3>
         </nuxt-link>
         <div>

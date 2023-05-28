@@ -1,23 +1,28 @@
 import { defineStore } from "pinia";
 
-export const useAlertStore = defineStore("alert", {
-  state: () => ({
-    show: false,
-    status: false,
-    message: undefined as unknown as string,
-  }),
+export const useAlertStore = defineStore("alert", () => {
+  const show = ref(false);
+  const status = ref(false);
+  const message = ref("");
 
-  actions: {
-    alert(status: boolean, message: string, timeout = 3000) {
-      this.$patch({
-        show: true,
-        status,
-        message,
-      });
+  const alert = (
+    alertStatus: boolean,
+    alertMessage: string,
+    alertTimeoute = 3000,
+  ) => {
+    show.value = true;
+    status.value = alertStatus;
+    message.value = alertMessage;
 
-      setTimeout(() => {
-        this.show = false;
-      }, timeout);
-    },
-  },
+    setTimeout(() => {
+      show.value = false;
+    }, alertTimeoute);
+  };
+
+  return {
+    show,
+    status,
+    message,
+    alert,
+  };
 });

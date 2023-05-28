@@ -1,22 +1,20 @@
 <template>
   <Transition>
-    <div
-      v-if="alertStore.show"
-      :class="alertStore.status ? 'success alert' : 'danger alert'"
-    >
-      <Icon v-if="alertStore.status" name="heroicons:check" class="w-6" />
-      <Icon v-else name="heroicons:exclamation-triangle" class="w-6" />
+    <div v-if="show" :class="status ? 'success alert' : 'danger alert'">
+      <Icon v-if="status" name="heroicons:check" class="m-1 w-6" />
+      <Icon v-else name="heroicons:exclamation-triangle" class="m-1 w-6" />
       <p>
-        {{ alertStore.message }}
+        {{ message }}
       </p>
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { useAlertStore } from "~~/store/alert";
+import { storeToRefs } from "pinia";
+import { useAlertStore } from "~/store/alert";
 
-const alertStore = useAlertStore();
+const { status, message, show } = storeToRefs(useAlertStore());
 </script>
 
 <style lang="postcss" scoped>
