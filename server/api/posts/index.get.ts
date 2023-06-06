@@ -22,9 +22,5 @@ export default defineEventHandler(async (_event) => {
     },
   });
 
-  // todo
-  return {
-    ok: true,
-    data: posts,
-  };
+  return posts;
 });

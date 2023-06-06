@@ -1,34 +1,16 @@
 <template>
-  <div>
-    Hello world
-    {{ post }}
-  </div>
-  <div v-html="post?.author.avatar"></div>
-  <div v-if="`!ok`">
-    goodbye
-    <h1>{{ message }}</h1>
-  </div>
+  <!-- <div v-if="post"> -->
+  <div v-html="post.author.avatar"></div>
+  <!-- </div> -->
 </template>
 <script setup lang="ts">
 import { usePostStore } from "~~/store/posts";
 
 const route = useRoute();
-const router = useRouter();
-const postStore = usePostStore();
-console.log(route.params.authro, route.params.title);
+const { fetchPost } = usePostStore();
 
-const {
-  ok,
-  message,
-  data: post,
-} = await postStore.fetch_post(
+const post = await fetchPost(
   route.params.author as string,
   route.params.slug as string,
 );
-
-if (!ok) {
-  setTimeout(() => {
-    router.push("/");
-  }, 2000);
-}
 </script>

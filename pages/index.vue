@@ -40,8 +40,8 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
-const postStore = usePostStore();
-await postStore.fetchAll();
+const { allPosts } = usePostStore();
+await allPosts();
 </script>
 
 <style lang="postcss">

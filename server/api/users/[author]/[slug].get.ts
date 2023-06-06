@@ -23,13 +23,9 @@ export default defineEventHandler(async (event) => {
   if (!post) {
     throw createError({
       statusCode: 404,
-      message: `Post with title: ${event.context.params?.title} and author: ${event.context.params?.author} doesn't exist.`,
+      statusMessage: `Post with title: ${event.context.params?.slug} and author: ${event.context.params?.author} doesn't exist.`,
     });
   }
 
-  // todo
-  return {
-    ok: true,
-    data: post,
-  };
+  return post;
 });

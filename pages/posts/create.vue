@@ -42,8 +42,8 @@ import { useAlertStore } from "~~/store/alert";
 import { usePostStore } from "~~/store/posts";
 
 const router = useRouter();
-const postStore = usePostStore();
-const alertStore = useAlertStore();
+const { createPost } = usePostStore();
+const { alert } = useAlertStore();
 
 definePageMeta({
   middleware: "signed",
@@ -64,9 +64,9 @@ onMounted(() => {
 
 const publish = async () => {
   if (body.value.title.length == 0) {
-    alertStore.alert(false, "Make sure to add title to your post");
+    alert(false, "Make sure to add title to your post");
   } else {
-    await postStore.create(body.value);
+    await createPost(body.value);
     router.push("/");
   }
 };

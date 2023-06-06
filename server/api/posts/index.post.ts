@@ -41,6 +41,5 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  // todo
   return post;
 });
