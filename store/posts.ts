@@ -6,7 +6,6 @@ import { useAlertStore } from "./alert";
 export const usePostStore = defineStore("post", () => {
   const { alert } = useAlertStore();
   const posts = ref<PostInterface[]>([]);
-  const router = useRouter();
 
   const allPosts = async () => {
     const { data, error } = await useFetch<PostInterface[]>("/api/posts");
@@ -22,8 +21,11 @@ export const usePostStore = defineStore("post", () => {
       body,
     });
 
-    if (error.value) alert(false, error.value.message);
-    alert(true, "post create successfully.");
+    console.log(error.value);
+
+    if (error.value) {
+      alert(false, error.value.message);
+    } else alert(true, "post create successfully.");
   };
 
   const fetchPost = async (author: string, titleSlug: string) => {

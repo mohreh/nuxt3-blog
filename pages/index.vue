@@ -35,12 +35,13 @@
 import { usePostStore } from "~~/store/posts";
 import { useUserStore } from "~~/store/user";
 
+const { allPosts } = usePostStore();
+const userStore = useUserStore();
+
 definePageMeta({
   layout: "default",
 });
 
-const userStore = useUserStore();
-const { allPosts } = usePostStore();
 await allPosts();
 </script>
 

@@ -22,12 +22,13 @@ const textClasses = {
   message: "text-xs text-red-500",
 };
 
-const username_exists = function ({ value }: { value: string }) {
+const username_exists = function (node: unknown): Promise<boolean> {
   return new Promise(async (resolve) => {
-    const { data } = await useFetch(`/api/users/${value}/exists`);
-    console.log(data.value);
+    const { data } = await useFetch(
+      `/api/users/${(node as { value: string }).value}/exists`,
+    );
 
-    return resolve(data.value);
+    return resolve(data.value as boolean);
   });
 };
 
@@ -66,7 +67,7 @@ const submitHandler = async () => {
         placeholder="username"
         :classes="textClasses"
         validation-visibility="live"
-        validation="required|length:5|matches:/^\S*$/|alphanumeric:latin|(500)username_exists"
+        validation="required|length:5|matches:/^\S*$/|(500)username_exists"
         :validation-rules="{ username_exists }"
         :validation-messages="{
           required: 'name is required.',

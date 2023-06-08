@@ -22,7 +22,8 @@ export default defineEventHandler(async (event) => {
 
   const existingPostWithSameSlug = await prisma.post.findFirst({
     where: {
-      title: body.title,
+      slug: body.slug,
+      authorId: user.username,
     },
   });
 
