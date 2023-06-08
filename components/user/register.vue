@@ -2,7 +2,6 @@
 import { useUserStore } from "@/store/user";
 
 const userStore = useUserStore();
-
 const body = ref({
   username: undefined as unknown as string,
   password: undefined as unknown as string,
@@ -25,11 +24,10 @@ const textClasses = {
 
 const username_exists = function ({ value }: { value: string }) {
   return new Promise(async (resolve) => {
-    console.log("username_exists");
-    const { ok, not_found } = await $fetch(`/api/users/${value}/exists`);
-    console.log(ok);
+    const { data } = await useFetch(`/api/users/${value}/exists`);
+    console.log(data.value);
 
-    return resolve(not_found);
+    return resolve(data.value);
   });
 };
 

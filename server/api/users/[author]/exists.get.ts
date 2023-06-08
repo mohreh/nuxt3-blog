@@ -14,14 +14,8 @@ export default defineEventHandler(async (event) => {
   });
 
   if (!user) {
-    return {
-      ok: true,
-      not_found: true,
-    };
+    return true;
   }
 
-  return {
-    ok: true,
-    not_found: false,
-  };
+  return false;
 });
