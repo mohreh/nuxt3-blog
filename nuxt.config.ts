@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-icon",
     "nuxt-icons",
+    "@nuxtjs/supabase",
   ],
 
   build: {
@@ -16,7 +17,6 @@ export default defineNuxtConfig({
     cssPath: "~/assets/css/tailwind.css",
     configPath: "tailwind.config",
     exposeConfig: false,
-    // config: {},
     injectPosition: 0,
     viewer: true,
   },

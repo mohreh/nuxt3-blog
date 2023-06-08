@@ -20,6 +20,7 @@ CREATE TABLE "Post" (
     "coverImage" TEXT,
     "hashtags" TEXT[],
     "views" INTEGER NOT NULL DEFAULT 0,
+    "slug" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "authorId" TEXT NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE "Post" (
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Post_title_authorId_key" ON "Post"("title", "authorId");
+CREATE UNIQUE INDEX "Post_slug_authorId_key" ON "Post"("slug", "authorId");
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
