@@ -20,9 +20,5 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // todo
-  return {
-    ok: true,
-    data: user,
-  };
+  return user;
 });

@@ -7,5 +7,7 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const author = await $fetch(`/api/users/${route.params.author}`);
+const { data: author } = await useFetch(
+  `/api/users/${route.params.author}`,
+);
 </script>
