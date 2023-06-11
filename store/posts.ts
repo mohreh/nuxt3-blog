@@ -7,14 +7,6 @@ export const usePostStore = defineStore("post", () => {
   const { alert } = useAlertStore();
   const posts = ref<PostInterface[]>([]);
 
-  const allPosts = async () => {
-    const { data, error } = await useFetch<PostInterface[]>("/api/posts");
-
-    if (error.value) alert(false, error.value.message);
-
-    posts.value = data.value ?? [];
-  };
-
   const createPost = async (body: CreatePost) => {
     const { error } = await useFetch<Post>("/api/posts", {
       method: "POST",
@@ -40,5 +32,5 @@ export const usePostStore = defineStore("post", () => {
     return post;
   };
 
-  return { posts, allPosts, createPost, fetchPost };
+  return { posts, createPost, fetchPost };
 });

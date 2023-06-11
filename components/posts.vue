@@ -32,12 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { usePostStore } from "~~/store/posts";
+import { PostInterface } from "~/nuxt";
 
-const postStore = usePostStore();
-
-const { posts } = storeToRefs(postStore);
+defineProps<{ posts: PostInterface[] }>();
 </script>
 
 <style lang="postcss">
