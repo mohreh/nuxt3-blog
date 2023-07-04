@@ -21,7 +21,7 @@ export const usePostStore = defineStore("post", () => {
   };
 
   const fetchPost = async (author: string, titleSlug: string) => {
-    const post = useFetchWithCache<PostInterface>(
+    const post = await useFetchWithCache<PostInterface>(
       `/api/users/${author}/${titleSlug}`,
       // (error) => {
       //   alert(false, error.message, 5000);
