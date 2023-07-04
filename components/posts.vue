@@ -20,12 +20,14 @@
         <nuxt-link :to="post.author.username + '/' + post.slug">
           <h3 class="post-title">{{ post.title }}</h3>
         </nuxt-link>
-        <div>
-          <div
-            class="whitespace-pre-line post-text"
-            v-html="post.text"
-          ></div>
-        </div>
+        <ClientOnly>
+          <div>
+            <div
+              class="whitespace-pre-line post-text"
+              v-html="post.text.slice(0, 100)"
+            ></div>
+          </div>
+        </ClientOnly>
       </div>
     </div>
   </div>
