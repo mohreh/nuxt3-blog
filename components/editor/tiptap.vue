@@ -23,7 +23,7 @@
 
       <editor-content
         :editor="editor"
-        class="mx-12 grow"
+        class="mx-12 outline-none grow"
         @click="editor?.view.focus()"
       />
     </ClientOnly>
@@ -33,7 +33,6 @@
 <script lang="ts" setup>
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
-import { StorageSerializers } from "@vueuse/core";
 
 type Usage = "create" | "update";
 
@@ -60,9 +59,9 @@ const editor = useEditor({
 });
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .ProseMirror {
-  @apply outline-none text-slate-900 text-xl tracking-wider font-medium leading-relaxed;
+  @apply outline-none text-slate-900 text-xl tracking-wider font-medium leading-relaxed border-none;
 
   h2 {
     @apply font-bold text-3xl;
