@@ -9,8 +9,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data: author, pending } = useAsyncData(
+const { data: author, pending } = useLazyAsyncData(
   async () => await $fetch(`/api/users/${route.params.author}`),
-  { lazy: true },
 );
 </script>

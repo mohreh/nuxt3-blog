@@ -9,13 +9,10 @@
 import { PostInterface } from "~/nuxt";
 
 const route = useRoute();
-const { data: post, pending } = useAsyncData(
+const { data: post, pending } = useLazyAsyncData(
   async () =>
     await $fetch<PostInterface>(
       `/api/users/${route.params.author}/${route.params.slug}`,
     ),
-  {
-    lazy: true,
-  },
 );
 </script>
