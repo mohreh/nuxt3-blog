@@ -33,8 +33,15 @@
 
 <script setup lang="ts">
 import { PostInterface } from "~/nuxt";
+import { useAlertStore } from "~/store/alert";
 
-defineProps<{ posts: PostInterface[] }>();
+const { alert } = useAlertStore();
+
+const { data: posts, error } = await useFetch<PostInterface[]>(
+  "/api/posts",
+);
+
+if (error.value) alert(false, error.value.message);
 </script>
 
 <style lang="postcss">
