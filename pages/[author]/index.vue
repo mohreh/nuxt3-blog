@@ -10,7 +10,7 @@
 const route = useRoute();
 
 const { data: author, pending } = useAsyncData(
-  async () => await useFetch(`/api/users/${route.params.author}`),
+  async () => await $fetch(`/api/users/${route.params.author}`),
   { lazy: true },
 );
 </script>

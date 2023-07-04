@@ -20,17 +20,5 @@ export const usePostStore = defineStore("post", () => {
     } else alert(true, "post create successfully.");
   };
 
-  const fetchPost = async (author: string, titleSlug: string) => {
-    const post = await useFetchWithCache<PostInterface>(
-      `/api/users/${author}/${titleSlug}`,
-      // (error) => {
-      //   alert(false, error.message, 5000);
-      //   setTimeout(() => router.push("/"), 2000);
-      // },
-    );
-
-    return post;
-  };
-
-  return { posts, createPost, fetchPost };
+  return { posts, createPost };
 });
