@@ -60,7 +60,7 @@ const editor = useEditor({
 });
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .ProseMirror {
   @apply outline-none text-slate-900 text-xl tracking-wider font-medium leading-relaxed;
 

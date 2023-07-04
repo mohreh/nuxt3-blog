@@ -46,7 +46,7 @@ const logout = () => {
 };
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 #navbar {
   @apply flex flex-row items-center justify-between z-10 sticky top-0 w-full py-3 px-8 border-b border-slate-900/10 backdrop-blur-md bg-white/10;
 }

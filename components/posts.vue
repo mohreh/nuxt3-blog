@@ -44,7 +44,7 @@ const { data: posts, error } = await useFetch<PostInterface[]>(
 if (error.value) alert(false, error.value.message);
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .post-title {
   @apply text-xl font-bold border-none p-0 m-0 inline cursor-pointer;
 
