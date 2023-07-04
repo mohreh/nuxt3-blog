@@ -33,10 +33,11 @@
 <script lang="ts" setup>
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import { StorageSerializers } from "@vueuse/core";
 
 type Usage = "create" | "update";
 
-const prop = defineProps<{
+const props = defineProps<{
   modelValue: {
     title: string;
     text: string;
@@ -48,11 +49,11 @@ const prop = defineProps<{
 const emit = defineEmits(["update:modelValue"]);
 
 const editor = useEditor({
-  content: prop.modelValue.text,
+  content: props.modelValue.text,
   extensions: [StarterKit],
   onUpdate: () => {
     emit("update:modelValue", {
-      title: prop.modelValue.title,
+      title: props.modelValue.title,
       text: editor.value?.getHTML(),
     });
   },

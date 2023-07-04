@@ -38,6 +38,7 @@
 </template>
 
 <script lang="ts" setup>
+import { StorageSerializers } from "@vueuse/core";
 import { useAlertStore } from "~~/store/alert";
 import { usePostStore } from "~~/store/posts";
 
@@ -55,6 +56,14 @@ const body = ref({
   text: "<p>Start writing here...</p>",
 });
 
+const cached = useSessionStorage("post_editor", null, {
+  serializer: StorageSerializers.object,
+});
+
+if (cached.value) {
+  body.value = cached.value;
+}
+
 const nav = ref();
 const height = ref(0);
 
@@ -68,6 +77,12 @@ const publish = async () => {
   } else {
     await createPost(body.value);
     router.push("/");
+
+    // todo: if publish is successful, update cached value to null
   }
 };
+
+onBeforeRouteLeave(() => {
+  cached.value = body.value;
+});
 </script>
