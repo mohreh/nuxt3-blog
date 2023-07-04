@@ -51,17 +51,17 @@ definePageMeta({
   layout: "empt",
 });
 
-const body = ref({
+let body = reactive({
   title: "",
   text: "<p>Start writing here...</p>",
 });
 
-const cached = useSessionStorage("post_editor", null, {
+const cached = useSessionStorage("create_post", null, {
   serializer: StorageSerializers.object,
 });
 
 if (cached.value) {
-  body.value = cached.value;
+  body = cached.value;
 }
 
 const nav = ref();
@@ -72,17 +72,21 @@ onMounted(() => {
 });
 
 const publish = async () => {
-  if (body.value.title.length == 0) {
+  if (body.title.length == 0) {
     alert(false, "Make sure to add title to your post");
   } else {
-    await createPost(body.value);
-    router.push("/");
+    const success = await createPost(body);
+    if (success)
+      body = {
+        title: "",
+        text: "<p>Write your new post here...</p>",
+      };
 
-    // todo: if publish is successful, update cached value to null
+    router.push("/");
   }
 };
 
 onBeforeRouteLeave(() => {
-  cached.value = body.value;
+  cached.value = body;
 });
 </script>
