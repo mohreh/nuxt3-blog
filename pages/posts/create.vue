@@ -30,7 +30,9 @@
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
       <div class="w-1/3 dark:text-white">
-        <h2>{{ body.title || "title" }}</h2>
+        <h2 class="pb-1 mb-2 text-2xl font-bold border-b border-slate-200">
+          {{ body.title || "title" }}
+        </h2>
         <div v-html="body.text"></div>
       </div>
     </div>
@@ -51,7 +53,7 @@ definePageMeta({
   layout: "empt",
 });
 
-let body = reactive({
+const body = ref({
   title: "",
   text: "<p>Start writing here...</p>",
 });
@@ -61,7 +63,7 @@ const cached = useSessionStorage("create_post", null, {
 });
 
 if (cached.value) {
-  body = cached.value;
+  body.value = cached.value;
 }
 
 const nav = ref();
@@ -72,12 +74,12 @@ onMounted(() => {
 });
 
 const publish = async () => {
-  if (body.title.length == 0) {
+  if (body.value.title.length == 0) {
     alert(false, "Make sure to add title to your post");
   } else {
-    const success = await createPost(body);
+    const success = await createPost(body.value);
     if (success)
-      body = {
+      body.value = {
         title: "",
         text: "<p>Write your new post here...</p>",
       };
@@ -86,7 +88,8 @@ const publish = async () => {
   }
 };
 
-onBeforeRouteLeave(() => {
-  cached.value = body;
-});
+watch(
+  () => [body.value.title, body.value.text],
+  () => (cached.value = body.value),
+);
 </script>
