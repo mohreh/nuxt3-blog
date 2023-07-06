@@ -30,10 +30,7 @@
         :style="`height: calc(100vh - ${height}px - 1.5rem);`"
       />
       <div class="w-1/3 dark:text-white">
-        <h2 class="pb-1 mb-2 text-2xl font-bold border-b border-slate-200">
-          {{ body.title || "title" }}
-        </h2>
-        <div v-html="body.text"></div>
+        <upload-cover-image />
       </div>
     </div>
   </div>
