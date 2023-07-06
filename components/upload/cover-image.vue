@@ -1,19 +1,61 @@
 <script lang="ts" setup>
+const container: Ref<HTMLElement | undefined> = ref();
+const label: Ref<HTMLElement | undefined> = ref();
+const labelTitle: Ref<HTMLElement | undefined> = ref();
+const imageInput: Ref<HTMLInputElement | undefined> = ref();
+
+const uploading = ref(false);
+
 const uploadImage = () => {
-  console.log("hello world");
+  if (
+    FileReader &&
+    !!(
+      container.value &&
+      labelTitle.value &&
+      label.value &&
+      imageInput.value
+    )
+  ) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (!!container.value) {
+        container.value.style.backgroundImage = `url(${
+          event.target?.result as string
+        })`;
+        container.value.classList.add("off-hover");
+      }
+    };
+
+    uploading.value = true;
+    labelTitle.value.innerText = "Uploading Image";
+
+    const image = imageInput.value.files?.item(0);
+    reader.readAsDataURL(image as File);
+  }
 };
 </script>
 
 <template>
-  <div class="bordered input-box">
+  <div ref="container" class="bordered input-box">
     <label
+      ref="label"
       for="file"
       class="flex flex-row gap-4 justify-center items-center h-full"
     >
-      <Icon name="heroicons:photo" size="48px" />
-      <h3 class="p-0 m-0 border-none">Upload Cover Image</h3>
+      <Icon v-if="!uploading" name="heroicons:photo" size="48px" />
+      <Icon v-else name="eos-icons:loading" size="48px" />
+
+      <h3 ref="labelTitle" class="p-0 m-0 border-none">
+        Upload Cover Image
+      </h3>
     </label>
-    <input type="file" accept="image/*" @change="uploadImage" />
+    <input
+      v-if="!uploading"
+      ref="imageInput"
+      type="file"
+      accept="image/*"
+      @change="uploadImage"
+    />
   </div>
 </template>
 
@@ -42,15 +84,19 @@ input[type="file"]::file-selector-button {
   @apply invisible h-full w-full z-10;
 }
 
+.off-hover {
+  pointer-events: none;
+}
+
 .dark {
   .input-box {
-    @apply border-slate-50/[0.06] text-slate-400;
+    @apply border-slate-50/[0.06] text-slate-200;
   }
 
   .input-box:hover,
   label:hover,
   input[type="file"]:hover {
-    @apply bg-slate-800 text-slate-200;
+    @apply bg-slate-800 text-slate-100;
   }
 }
 </style>
