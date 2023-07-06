@@ -1,23 +1,25 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const uploadImage = () => {
+  console.log("hello world");
+};
+</script>
 
 <template>
-  <div>
-    <div class="input-box">
-      <label
-        for="file"
-        class="flex flex-row gap-4 justify-center items-center h-full"
-      >
-        <Icon name="heroicons:photo" size="48px" />
-        <h3 class="p-0 m-0 border-none">Upload Cover Image</h3>
-      </label>
-      <input type="file" accept="image/*" />
-    </div>
+  <div class="bordered input-box">
+    <label
+      for="file"
+      class="flex flex-row gap-4 justify-center items-center h-full"
+    >
+      <Icon name="heroicons:photo" size="48px" />
+      <h3 class="p-0 m-0 border-none">Upload Cover Image</h3>
+    </label>
+    <input type="file" accept="image/*" @change="uploadImage" />
   </div>
 </template>
 
 <style scoped lang="postcss">
 .input-box {
-  @apply w-full h-48 rounded-lg border-2 border-dashed border-slate-900/10 relative items-center justify-center text-slate-700;
+  @apply w-full h-48 rounded-lg border-2 border-dashed border-slate-900/10 relative items-center justify-center text-slate-600;
 }
 
 .input-box,
@@ -29,7 +31,7 @@ input[type="file"] {
 .input-box:hover,
 label:hover,
 input[type="file"]:hover {
-  @apply bg-slate-300 bg-opacity-50;
+  @apply bg-slate-300 bg-opacity-50 text-slate-800;
 }
 
 input[type="file"] {
@@ -42,13 +44,13 @@ input[type="file"]::file-selector-button {
 
 .dark {
   .input-box {
-    @apply border-slate-50/[0.06] text-slate-300;
+    @apply border-slate-50/[0.06] text-slate-400;
   }
 
   .input-box:hover,
   label:hover,
   input[type="file"]:hover {
-    @apply bg-slate-800;
+    @apply bg-slate-800 text-slate-200;
   }
 }
 </style>
