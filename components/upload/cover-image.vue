@@ -48,7 +48,7 @@ const uploadImage = async () => {
         .upload(
           `${user.username}-${Math.random()
             .toString(36)
-            .substring(2, 10)}`, // random name for image
+            .substring(2, 10)}.${coverImage.name.split(".").pop()}`, // random name for image
           coverImage,
         );
 
@@ -57,12 +57,15 @@ const uploadImage = async () => {
         container.value.style.backgroundImage = "none";
       } else {
         alertStore.alert(true, "Cover Image Uploaded Successfully");
-        uploading.value = false;
         emit("coverImageUploaded", data?.path);
       }
+
+      uploading.value = false;
     } catch (error) {
       alertStore.alert(false, (error as Error).message, 10000);
       container.value.style.backgroundImage = "none";
+
+      uploading.value = false;
     }
   }
 };
