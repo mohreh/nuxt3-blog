@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useAlertStore } from "~/store/alert";
+import { useUserStore } from "~/store/user";
+
 const container: Ref<HTMLElement | undefined> = ref();
 const label: Ref<HTMLElement | undefined> = ref();
 const labelTitle: Ref<HTMLElement | undefined> = ref();
@@ -6,7 +9,11 @@ const imageInput: Ref<HTMLInputElement | undefined> = ref();
 
 const uploading = ref(false);
 
-const uploadImage = () => {
+const supabase = useSupabaseClient();
+const user = useUserStore();
+const alertStore = useAlertStore();
+
+const uploadImage = async () => {
   if (
     FileReader &&
     !!(
@@ -28,40 +35,69 @@ const uploadImage = () => {
 
     uploading.value = true;
     labelTitle.value.innerText = "Uploading Image";
+    label.value.classList.add("darken-background");
 
-    const image = imageInput.value.files?.item(0);
-    reader.readAsDataURL(image as File);
+    try {
+      const coverImage = imageInput.value.files?.item(0) as File;
+
+      reader.readAsDataURL(coverImage);
+
+      const { data, error } = await supabase.storage
+        .from("public/coverImages")
+        .upload(
+          `${user.username}-${Math.random()
+            .toString(36)
+            .substring(2, 10)}`, // random name for image
+          coverImage,
+        );
+
+      if (error) {
+        alertStore.alert(false, error.message);
+      } else {
+        alertStore.alert(true, "Cover Image Uploaded Successfully");
+      }
+      console.log(data, error);
+    } catch (error) {
+      alertStore.alert(false, (error as Error).message);
+    }
   }
 };
 </script>
 
 <template>
-  <div ref="container" class="bordered input-box">
-    <label
-      ref="label"
-      for="file"
-      class="flex flex-row gap-4 justify-center items-center h-full"
-    >
-      <Icon v-if="!uploading" name="heroicons:photo" size="48px" />
-      <Icon v-else name="eos-icons:loading" size="48px" />
+  <div class="bordered main">
+    <div ref="container" class="input-box">
+      <label
+        ref="label"
+        for="file"
+        class="flex flex-row gap-4 justify-center items-center h-full"
+      >
+        <Icon v-if="!uploading" name="heroicons:photo" size="48px" />
+        <Icon v-else name="eos-icons:loading" size="48px" />
 
-      <h3 ref="labelTitle" class="p-0 m-0 border-none">
-        Upload Cover Image
-      </h3>
-    </label>
-    <input
-      v-if="!uploading"
-      ref="imageInput"
-      type="file"
-      accept="image/*"
-      @change="uploadImage"
-    />
+        <h3 ref="labelTitle" class="p-0 m-0 border-none">
+          Upload Cover Image
+        </h3>
+      </label>
+      <input
+        v-if="!uploading"
+        ref="imageInput"
+        type="file"
+        accept="image/*"
+        @change="uploadImage"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped lang="postcss">
+.main {
+  @apply rounded-lg border-2 border-dashed border-slate-900/10 overflow-hidden;
+}
+
 .input-box {
-  @apply w-full h-48 rounded-lg border-2 border-dashed border-slate-900/10 relative items-center justify-center text-slate-600;
+  @apply w-full h-48 relative justify-center items-center text-slate-600 rounded-lg;
+  border-radius: 5px;
 }
 
 .input-box,
@@ -88,9 +124,17 @@ input[type="file"]::file-selector-button {
   pointer-events: none;
 }
 
+.darken-background {
+  @apply bg-gray-700/50 backdrop-blur-sm;
+}
+
 .dark {
+  .main {
+    @apply border-slate-50/[0.06];
+  }
+
   .input-box {
-    @apply border-slate-50/[0.06] text-slate-200;
+    @apply text-slate-200;
   }
 
   .input-box:hover,
