@@ -56,7 +56,7 @@ if (error.value) alert(false, error.value.message);
 }
 
 .post {
-  @apply my-3 p-3 border;
+  @apply my-3 p-3;
 }
 
 .small {
@@ -82,10 +82,6 @@ if (error.value) alert(false, error.value.message);
 
   .small {
     @apply text-sm;
-  }
-
-  .post {
-    @apply border-slate-700;
   }
 
   .post-text > p:first-child:after {
