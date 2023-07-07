@@ -7,11 +7,11 @@ const label: Ref<HTMLElement | undefined> = ref();
 const labelTitle: Ref<HTMLElement | undefined> = ref();
 const imageInput: Ref<HTMLInputElement | undefined> = ref();
 
-const uploading = ref(false);
-
 const supabase = useSupabaseClient();
 const user = useUserStore();
 const alertStore = useAlertStore();
+
+const uploading = ref(false);
 
 const uploadImage = async () => {
   if (
@@ -23,19 +23,16 @@ const uploadImage = async () => {
       imageInput.value
     )
   ) {
+    uploading.value = true;
+
     const reader = new FileReader();
     reader.onload = (event) => {
       if (!!container.value) {
         container.value.style.backgroundImage = `url(${
           event.target?.result as string
         })`;
-        container.value.classList.add("off-hover");
       }
     };
-
-    uploading.value = true;
-    labelTitle.value.innerText = "Uploading Image";
-    label.value.classList.add("darken-background");
 
     try {
       const coverImage = imageInput.value.files?.item(0) as File;
@@ -52,31 +49,37 @@ const uploadImage = async () => {
         );
 
       if (error) {
-        alertStore.alert(false, error.message);
+        alertStore.alert(false, error.message, 10000);
+        container.value.style.backgroundImage = "none";
       } else {
         alertStore.alert(true, "Cover Image Uploaded Successfully");
       }
-      console.log(data, error);
     } catch (error) {
-      alertStore.alert(false, (error as Error).message);
+      alertStore.alert(false, (error as Error).message, 10000);
+      container.value.style.backgroundImage = "none";
     }
+
+    uploading.value = false;
   }
 };
 </script>
 
 <template>
   <div class="bordered main">
-    <div ref="container" class="input-box">
+    <div
+      ref="container"
+      :class="uploading ? 'input-box off-hover' : 'input-box'"
+    >
       <label
         ref="label"
         for="file"
-        class="flex flex-row gap-4 justify-center items-center h-full"
+        :class="uploading ? 'darken-background' : ''"
       >
         <Icon v-if="!uploading" name="heroicons:photo" size="48px" />
         <Icon v-else name="eos-icons:loading" size="48px" />
 
         <h3 ref="labelTitle" class="p-0 m-0 border-none">
-          Upload Cover Image
+          {{ uploading ? "Uploading Image" : "Upload Cover Image" }}
         </h3>
       </label>
       <input
@@ -96,8 +99,11 @@ const uploadImage = async () => {
 }
 
 .input-box {
-  @apply w-full h-48 relative justify-center items-center text-slate-600 rounded-lg;
-  border-radius: 5px;
+  @apply w-full h-48 relative justify-center items-center text-slate-600 rounded-lg bg-no-repeat bg-cover;
+}
+
+label {
+  @apply flex flex-row gap-4 justify-center items-center h-full;
 }
 
 .input-box,
