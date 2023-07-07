@@ -11,11 +11,29 @@ const supabase = useSupabaseClient();
 const user = useUserStore();
 const alertStore = useAlertStore();
 
+const props = defineProps<{
+  coverImage?: string;
+}>();
+
 const emit = defineEmits<{
   (e: "coverImageUploaded", value: string): void;
 }>();
 
 const uploading = ref(false);
+const coverImageUrl = ref("");
+
+watch(
+  () => props.coverImage,
+  () => {
+    if (props.coverImage)
+      coverImageUrl.value = supabase.storage
+        .from("public/coverImages")
+        .getPublicUrl(props.coverImage).data.publicUrl;
+  },
+  {
+    immediate: true,
+  },
+);
 
 const uploadImage = async () => {
   if (
@@ -73,7 +91,9 @@ const uploadImage = async () => {
 
 <template>
   <div class="bordered main">
+    <img v-if="coverImageUrl" :src="coverImageUrl" class="w-full h-48" />
     <div
+      v-else
       ref="container"
       :class="uploading ? 'input-box off-hover' : 'input-box'"
     >

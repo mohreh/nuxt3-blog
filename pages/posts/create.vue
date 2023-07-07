@@ -31,6 +31,7 @@
       />
       <div class="w-1/3 dark:text-white">
         <upload-cover-image
+          :cover-image="body.coverImage"
           @cover-image-uploaded="(path) => (body.coverImage = path)"
         />
       </div>
@@ -55,7 +56,7 @@ definePageMeta({
 const body = ref({
   title: "",
   text: "<p>Start writing here...</p>",
-  coverImage: null as string | null,
+  coverImage: undefined as string | undefined,
 });
 
 const cached = useSessionStorage("create_post", null, {
@@ -82,7 +83,7 @@ const publish = async () => {
       body.value = {
         title: "",
         text: "<p>Write your new post here...</p>",
-        coverImage: null,
+        coverImage: undefined,
       };
 
     router.push("/");
@@ -91,6 +92,9 @@ const publish = async () => {
 
 watch(
   () => [body.value.title, body.value.text, body.value.coverImage],
-  () => (cached.value = body.value),
+  () => {
+    cached.value = body.value;
+    console.log(body.value.coverImage);
+  },
 );
 </script>
