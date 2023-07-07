@@ -11,6 +11,10 @@ const supabase = useSupabaseClient();
 const user = useUserStore();
 const alertStore = useAlertStore();
 
+const emit = defineEmits<{
+  (e: "coverImageUploaded", value: string): void;
+}>();
+
 const uploading = ref(false);
 
 const uploadImage = async () => {
@@ -53,13 +57,13 @@ const uploadImage = async () => {
         container.value.style.backgroundImage = "none";
       } else {
         alertStore.alert(true, "Cover Image Uploaded Successfully");
+        uploading.value = false;
+        emit("coverImageUploaded", data?.path);
       }
     } catch (error) {
       alertStore.alert(false, (error as Error).message, 10000);
       container.value.style.backgroundImage = "none";
     }
-
-    uploading.value = false;
   }
 };
 </script>
