@@ -10,6 +10,6 @@
 
 <style lang="postcss" scoped>
 .container {
-  @apply m-auto max-w-full relative flex flex-col py-2 px-8;
+  @apply m-auto max-w-7xl relative flex flex-col py-2;
 }
 </style>
