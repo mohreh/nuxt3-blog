@@ -11,7 +11,7 @@ const supabase = useSupabaseClient();
 const user = useUserStore();
 const alertStore = useAlertStore();
 
-const props = defineProps<{
+defineProps<{
   coverImage?: string;
 }>();
 
@@ -20,20 +20,6 @@ const emit = defineEmits<{
 }>();
 
 const uploading = ref(false);
-const coverImageUrl = ref("");
-
-watch(
-  () => props.coverImage,
-  () => {
-    if (props.coverImage)
-      coverImageUrl.value = supabase.storage
-        .from("public/coverImages")
-        .getPublicUrl(props.coverImage).data.publicUrl;
-  },
-  {
-    immediate: true,
-  },
-);
 
 const uploadImage = async () => {
   if (
@@ -75,7 +61,12 @@ const uploadImage = async () => {
         container.value.style.backgroundImage = "none";
       } else {
         alertStore.alert(true, "Cover Image Uploaded Successfully");
-        emit("coverImageUploaded", data?.path);
+        emit(
+          "coverImageUploaded",
+          supabase.storage
+            .from("public/coverImages")
+            .getPublicUrl(data?.path).data.publicUrl,
+        );
       }
 
       uploading.value = false;
@@ -92,8 +83,8 @@ const uploadImage = async () => {
 <template>
   <div class="bordered main">
     <img
-      v-if="coverImageUrl"
-      :src="coverImageUrl"
+      v-if="coverImage"
+      :src="coverImage"
       class="object-cover w-full h-48"
     />
     <div

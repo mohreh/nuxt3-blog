@@ -3,31 +3,38 @@
     <div
       v-for="post in posts"
       :key="post.id"
-      class="flex flex-row gap-3 post bordered"
+      class="flex overflow-hidden flex-col gap-3 my-3 rounded-lg bordered"
     >
-      <div class="w-10 h-10" v-html="post.author.avatar" />
-      <div class="w-full">
-        <div class="flex flex-col pb-2">
-          <nuxt-link :to="post.author.username">
-            <p class="text-blue-600 dark:text-blue-300 small">
-              {{ post.author.username }}
+      <img
+        v-if="post.coverImage"
+        :src="post.coverImage"
+        class="object-cover h-80"
+      />
+      <div class="flex flex-row gap-3 p-3 post">
+        <div class="w-10 h-10" v-html="post.author.avatar" />
+        <div class="w-full">
+          <div class="flex flex-col pb-2">
+            <nuxt-link :to="post.author.username">
+              <p class="text-blue-600 dark:text-blue-300 small">
+                {{ post.author.username }}
+              </p>
+            </nuxt-link>
+            <p class="text-slate-600 small dark:text-slate-500">
+              {{ new Date(post.createdAt).toDateString() }}
             </p>
-          </nuxt-link>
-          <p class="text-slate-600 small dark:text-slate-500">
-            {{ new Date(post.createdAt).toDateString() }}
-          </p>
-        </div>
-        <nuxt-link :to="post.author.username + '/' + post.slug">
-          <h3 class="post-title">{{ post.title }}</h3>
-        </nuxt-link>
-        <ClientOnly>
-          <div>
-            <div
-              class="whitespace-pre-line post-text"
-              v-html="post.text.slice(0, 100)"
-            ></div>
           </div>
-        </ClientOnly>
+          <nuxt-link :to="post.author.username + '/' + post.slug">
+            <h3 class="post-title">{{ post.title }}</h3>
+          </nuxt-link>
+          <ClientOnly>
+            <div>
+              <div
+                class="whitespace-pre-line post-text"
+                v-html="post.text.slice(0, 100)"
+              ></div>
+            </div>
+          </ClientOnly>
+        </div>
       </div>
     </div>
   </div>
@@ -53,10 +60,6 @@ if (error.value) alert(false, error.value.message);
   &:hover {
     @apply text-blue-600;
   }
-}
-
-.post {
-  @apply my-3 p-3;
 }
 
 .small {

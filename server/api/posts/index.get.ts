@@ -10,6 +10,7 @@ export default defineEventHandler(async (_event) => {
       title: true,
       slug: true,
       createdAt: true,
+      coverImage: true,
       author: {
         select: {
           username: true,
