@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-icons",
     "@nuxtjs/supabase",
+    "nuxt-lazy-load",
   ],
 
   build: {
