@@ -43,5 +43,13 @@ model Post {
   author   User   @relation(fields: [authorId], references: [username])
   authorId String
 
+  topics Topic[]
+
   @@unique([slug, authorId])
+}
+
+model Topic {
+  id    Int      @id @default(autoincrement())
+  name  String
+  posts Post[]
 }
