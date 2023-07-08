@@ -91,7 +91,11 @@ const uploadImage = async () => {
 
 <template>
   <div class="bordered main">
-    <img v-if="coverImageUrl" :src="coverImageUrl" class="w-full h-48" />
+    <img
+      v-if="coverImageUrl"
+      :src="coverImageUrl"
+      class="object-cover w-full h-48"
+    />
     <div
       v-else
       ref="container"
