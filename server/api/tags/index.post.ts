@@ -18,21 +18,21 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const existingTopic = prisma.topic.findFirst({
+  const existingTag = prisma.tag.findFirst({
     where: {
       name: body.name,
     },
   });
 
-  if (existingTopic) {
-    return existingTopic;
+  if (existingTag) {
+    return existingTag;
   }
 
-  const topic = prisma.topic.create({
+  const tag = prisma.tag.create({
     data: {
       name: body.name,
     },
   });
 
-  return topic;
+  return tag;
 });

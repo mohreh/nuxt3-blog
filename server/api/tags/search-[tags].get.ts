@@ -3,15 +3,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default defineEventHandler((event) => {
-  const topic = event.context.params?.topic;
+  const tag = event.context.params?.tag;
 
-  const topics = prisma.topic.findMany({
+  const tags = prisma.tag.findMany({
     where: {
       name: {
-        contains: topic,
+        contains: tag,
       },
     },
   });
 
-  return topics;
+  return tags;
 });

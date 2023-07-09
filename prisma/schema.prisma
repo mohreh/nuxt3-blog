@@ -43,12 +43,12 @@ model Post {
   author   User   @relation(fields: [authorId], references: [username])
   authorId String
 
-  topics Topic[]
+  tags Tag[]
 
   @@unique([slug, authorId])
 }
 
-model Topic {
+model Tag {
   name  String @unique
   posts Post[]
 
