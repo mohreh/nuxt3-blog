@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const existingTag = prisma.tag.findFirst({
+  const existingTag = await prisma.tag.findFirst({
     where: {
       name: body.name,
     },
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     return existingTag;
   }
 
-  const tag = prisma.tag.create({
+  const tag = await prisma.tag.create({
     data: {
       name: body.name,
     },

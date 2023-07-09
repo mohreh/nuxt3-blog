@@ -16,6 +16,8 @@
         "
       />
 
+      <editor-tag-picker />
+
       <editor-menu
         :editor="editor"
         class="sticky top-0 z-10 flex-none py-2 px-12 bg-purple-200/50 h-fit dark:bg-slate-900"
