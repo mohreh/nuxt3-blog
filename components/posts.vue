@@ -3,7 +3,7 @@
     <div
       v-for="post in posts"
       :key="post.id"
-      class="flex overflow-hidden flex-col gap-3 my-3 rounded-lg bordered"
+      class="flex overflow-hidden flex-col gap-3 my-4 rounded-lg bordered"
     >
       <img
         v-if="post.coverImage"

@@ -14,6 +14,10 @@ export default defineNuxtConfig({
     transpile: [],
   },
 
+  lazyLoad: {
+    // defaultImage: "/images/default-image.jpg",
+  },
+
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     configPath: "tailwind.config",
