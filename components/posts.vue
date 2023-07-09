@@ -10,7 +10,7 @@
         :src="post.coverImage"
         class="object-cover h-80"
       />
-      <div class="flex flex-row gap-3 p-3 post">
+      <div class="flex flex-row gap-4 p-3 post">
         <div class="w-10 h-10" v-html="post.author.avatar" />
         <div class="w-full">
           <div class="flex flex-col pb-2">
@@ -24,14 +24,20 @@
             </p>
           </div>
           <nuxt-link :to="post.author.username + '/' + post.slug">
-            <h3 class="post-title">{{ post.title }}</h3>
+            <h2 class="post-title">{{ post.title }}</h2>
           </nuxt-link>
           <ClientOnly>
             <div>
-              <div
-                class="whitespace-pre-line post-text"
-                v-html="post.text.slice(0, 100)"
-              ></div>
+              <div class="flex flex-row gap-3 mt-4">
+                <div
+                  v-for="tag in post.tags"
+                  :key="tag.name"
+                  class="flex flex-row gap-px-4"
+                >
+                  <span class="text-slate-400 dark:text-slate-500">#</span>
+                  <p>{{ tag.name }}</p>
+                </div>
+              </div>
             </div>
           </ClientOnly>
         </div>
@@ -55,7 +61,7 @@ if (error.value) alert(false, error.value.message);
 
 <style lang="postcss" scoped>
 .post-title {
-  @apply text-xl font-bold border-none p-0 m-0 inline cursor-pointer;
+  @apply text-2xl font-bold border-none p-0 m-0 inline cursor-pointer;
 
   &:hover {
     @apply text-blue-600;
@@ -66,7 +72,7 @@ if (error.value) alert(false, error.value.message);
   @apply text-sm;
 }
 
-.post-text > *:not(:first-child) {
+/* .post-text > *:not(:first-child) {
   @apply hidden;
 }
 
@@ -74,7 +80,8 @@ if (error.value) alert(false, error.value.message);
   @apply text-slate-500;
 
   content: " click title to read more...";
-}
+} 
+*/
 
 .dark {
   .post-title {
@@ -87,8 +94,9 @@ if (error.value) alert(false, error.value.message);
     @apply text-sm;
   }
 
-  .post-text > p:first-child:after {
+  /*  .post-text > p:first-child:after {
     @apply text-slate-600;
   }
+*/
 }
 </style>
