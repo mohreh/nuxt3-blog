@@ -4,6 +4,10 @@ import { useAlertStore } from "~/store/alert";
 
 const alertStore = useAlertStore();
 
+const emit = defineEmits<{
+  (e: "select", value: Tag[]): void;
+}>();
+
 const tagName = ref("");
 const selectedTags: Ref<Tag[]> = ref([]);
 const tags: Ref<Tag[]> = ref([]);
@@ -43,6 +47,8 @@ const selectTag = (tag: Tag) => {
   selectedTags.value.push(tag);
   tagName.value = "";
   if (!!input.value) input.value.focus();
+
+  emit("select", selectedTags.value);
 };
 
 const createTag = async () => {

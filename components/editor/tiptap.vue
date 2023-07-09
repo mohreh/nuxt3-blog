@@ -16,7 +16,7 @@
         "
       />
 
-      <editor-tag-picker />
+      <editor-tag-picker @select="onTagSelect" />
 
       <editor-menu
         :editor="editor"
@@ -35,6 +35,7 @@
 <script lang="ts" setup>
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import { Tag } from "@prisma/client";
 
 type Usage = "create" | "update";
 
@@ -42,6 +43,7 @@ const props = defineProps<{
   modelValue: {
     title: string;
     text: string;
+    tags: Tag[];
   };
 
   mode: Usage;
@@ -56,9 +58,18 @@ const editor = useEditor({
     emit("update:modelValue", {
       title: props.modelValue.title,
       text: editor.value?.getHTML(),
+      tags: props.modelValue.tags,
     });
   },
 });
+
+const onTagSelect = (selectedTags: Tag[]) => {
+  emit("update:modelValue", {
+    title: props.modelValue.title,
+    text: editor.value?.getHTML(),
+    tags: selectedTags,
+  });
+};
 </script>
 
 <style lang="postcss">

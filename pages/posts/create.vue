@@ -40,6 +40,7 @@
 </template>
 
 <script lang="ts" setup>
+import { Tag } from "@prisma/client";
 import { StorageSerializers } from "@vueuse/core";
 import { useAlertStore } from "~~/store/alert";
 import { usePostStore } from "~~/store/posts";
@@ -56,6 +57,7 @@ definePageMeta({
 const body = ref({
   title: "",
   text: "<p>Start writing here...</p>",
+  tags: [] as Tag[],
   coverImage: undefined as string | undefined,
 });
 
@@ -83,6 +85,7 @@ const publish = async () => {
       body.value = {
         title: "",
         text: "<p>Write your new post here...</p>",
+        tags: [],
         coverImage: undefined,
       };
 
