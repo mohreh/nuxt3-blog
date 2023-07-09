@@ -33,17 +33,17 @@
           </div>
           <div class="py-1">
             <nuxt-link class="icon-group" to="/posts/create">
-              <Icon name="heroicons:pencil-square" class="w-4" />
+              <Icon name="heroicons:pencil-square" class="icon" />
               <p>Create new post</p>
             </nuxt-link>
           </div>
           <div class="py-1">
             <div class="icon-group">
-              <Icon name="heroicons:user-group" class="w-4" />
+              <Icon name="heroicons:user-group" class="icon" />
               <p>Followers & Following</p>
             </div>
             <div class="icon-group">
-              <Icon name="heroicons:bell" class="w-4" />
+              <Icon name="heroicons:bell" class="icon" />
               <p>Notifications</p>
             </div>
           </div>
