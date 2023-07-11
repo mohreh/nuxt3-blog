@@ -43,7 +43,7 @@ const props = defineProps<{
   modelValue: {
     title: string;
     text: string;
-    coverImage: string;
+    coverImage: string | undefined;
     tags: Tag[];
   };
 

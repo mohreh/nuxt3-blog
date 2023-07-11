@@ -14,7 +14,11 @@
       </div>
       <div>
         <button
-          class="py-1 px-4 text-lg font-semibold text-indigo-50 rounded-lg bg-sky-600/80 hover:bg-sky-600/90"
+          :class="`py-1 px-4 text-lg font-semibold rounded-lg ${
+            publishing
+              ? 'bg-sky-200 dark:bg-sky-800 text-slate-100 hover:bg-blue-900'
+              : 'bg-sky-600/80 hover:bg-sky-600/90 text-indigo-50'
+          }`"
           :disabled="publishing"
           @click="publish"
         >
