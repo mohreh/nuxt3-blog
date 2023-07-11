@@ -43,6 +43,7 @@ const props = defineProps<{
   modelValue: {
     title: string;
     text: string;
+    coverImage: string;
     tags: Tag[];
   };
 
@@ -58,6 +59,7 @@ const editor = useEditor({
     emit("update:modelValue", {
       title: props.modelValue.title,
       text: editor.value?.getHTML(),
+      coverImage: props.modelValue.coverImage,
       tags: props.modelValue.tags,
     });
   },
@@ -67,6 +69,7 @@ const onTagSelect = (selectedTags: Tag[]) => {
   emit("update:modelValue", {
     title: props.modelValue.title,
     text: editor.value?.getHTML(),
+    coverImage: props.modelValue.coverImage,
     tags: selectedTags,
   });
 };

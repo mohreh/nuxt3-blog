@@ -15,6 +15,7 @@
       <div>
         <button
           class="py-1 px-4 text-lg font-semibold text-indigo-50 rounded-lg bg-sky-600/80 hover:bg-sky-600/90"
+          :disabled="publishing"
           @click="publish"
         >
           Publish
@@ -76,7 +77,10 @@ onMounted(() => {
   height.value = nav.value.clientHeight;
 });
 
+const publishing = ref(false);
+
 const publish = async () => {
+  publishing.value = true;
   if (body.value.title.length == 0) {
     alert(false, "Make sure to add title to your post");
   } else {
@@ -89,6 +93,7 @@ const publish = async () => {
         coverImage: undefined,
       };
 
+    publishing.value = false;
     router.push("/");
   }
 };
