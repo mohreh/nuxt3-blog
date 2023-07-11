@@ -17,7 +17,7 @@ export const usePostStore = defineStore("post", () => {
 
     if (error.value) {
       alert(false, error.value.message);
-    } else alert(true, "post create successfully.");
+    } else alert(true, "post created successfully.");
 
     return error.value ? false : true;
   };

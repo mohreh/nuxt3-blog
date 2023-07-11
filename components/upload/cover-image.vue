@@ -98,7 +98,7 @@ const uploadImage = async () => {
         :class="uploading ? 'darken-background' : ''"
       >
         <Icon v-if="!uploading" name="heroicons:photo" size="48px" />
-        <Icon v-else name="eos-icons:loading" size="48px" />
+        <Icon v-else name="line-md:uploading-loop" size="48px" />
 
         <h3 ref="labelTitle" class="p-0 m-0 border-none">
           {{ uploading ? "Uploading Image" : "Upload Cover Image" }}

@@ -14,7 +14,7 @@
       </div>
       <div>
         <button
-          :class="`py-1 px-4 text-lg font-semibold rounded-lg ${
+          :class="`flex flex-row gap-2 py-1 px-4 text-lg font-semibold rounded-lg ${
             publishing
               ? 'bg-sky-200 dark:bg-sky-800 text-slate-100 hover:bg-blue-900'
               : 'bg-sky-600/80 hover:bg-sky-600/90 text-indigo-50'
@@ -22,7 +22,8 @@
           :disabled="publishing"
           @click="publish"
         >
-          Publish
+          <Icon name="line-md:uploading-loop" v-if="publishing" />
+          <p>Publish</p>
         </button>
       </div>
     </div>
@@ -84,10 +85,10 @@ onMounted(() => {
 const publishing = ref(false);
 
 const publish = async () => {
-  publishing.value = true;
   if (body.value.title.length == 0) {
     alert(false, "Make sure to add title to your post");
   } else {
+    publishing.value = true;
     const success = await createPost(body.value);
     if (success)
       body.value = {
