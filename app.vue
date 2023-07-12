@@ -14,6 +14,10 @@ h2 {
   @apply text-2xl font-bold pb-1 mb-2 border-b border-slate-200;
 }
 
+h1 {
+  @apply text-3xl font-bold pb-1 mb-2;
+}
+
 .bordered {
   @apply border border-slate-900/10 rounded-lg;
 }
@@ -26,10 +30,6 @@ h2 {
   h3,
   h2 {
     @apply border-slate-700;
-  }
-
-  p {
-    @apply text-white text-base;
   }
 }
 </style>

@@ -1,4 +1,4 @@
-import { Post } from "@prisma/client";
+import { Post, Tag } from "@prisma/client";
 
 declare global {
   namespace nitro {
@@ -38,6 +38,7 @@ interface PostInterface extends Post {
     username: string;
     avatar: string;
   };
+  tags: Tag[];
 }
 
 enum Role {

@@ -22,7 +22,7 @@
           :disabled="publishing"
           @click="publish"
         >
-          <Icon name="line-md:uploading-loop" v-if="publishing" />
+          <Icon v-if="publishing" name="line-md:uploading-loop" />
           <p>Publish</p>
         </button>
       </div>

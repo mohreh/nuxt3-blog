@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
           avatar: true,
         },
       },
+      tags: true,
     },
   });
 
