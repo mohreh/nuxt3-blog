@@ -1,6 +1,6 @@
 <template>
   <div v-if="!pending" class="flex gap-5 my-4">
-    <div class="overflow-hidden basis-2/3 bordered">
+    <div class="overflow-hidden basis-2/3 bordered h-fit">
       <img
         v-if="post?.coverImage"
         :src="post?.coverImage"
@@ -44,6 +44,11 @@
         </client-only>
       </div>
     </div>
+    <lazy-card-user
+      class="basis-1/3"
+      :user="post?.author"
+      :current-post-slug="$route.params.slug as string"
+    />
   </div>
   <div v-else>Loading...</div>
 </template>

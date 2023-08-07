@@ -34,11 +34,13 @@ interface UserInterface {
 
 interface PostInterface extends Post {
   createdAt: string;
-  author: {
-    username: string;
-    avatar: string;
-  };
+  author: Author;
   tags: Tag[];
+}
+
+interface Author {
+  username: string;
+  avatar: string;
 }
 
 enum Role {
