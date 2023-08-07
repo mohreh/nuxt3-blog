@@ -37,3 +37,72 @@ p {
 .v-leave-to {
   opacity: 0;
 }
+
+.ProseMirror {
+  @apply outline-none text-slate-900 text-xl tracking-wider font-medium leading-relaxed border-none;
+
+  h2 {
+    @apply font-bold text-3xl;
+  }
+
+  h3 {
+    @apply font-bold text-2xl;
+  }
+
+  h4 {
+    @apply font-bold text-xl;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul,
+  ol {
+    @apply list-inside;
+
+    li {
+      p {
+        @apply inline;
+      }
+    }
+  }
+
+  pre {
+    @apply bg-slate-300/50 px-4 py-5 my-3 rounded-lg text-base;
+
+    code {
+      @apply p-0;
+    }
+  }
+
+  blockquote {
+    @apply px-4 mx-7 my-4 border-l-4 border-sky-800/10;
+  }
+
+  code {
+    @apply p-1 text-base rounded;
+  }
+
+  hr {
+    @apply content-none m-7 border-t-0 border-b-2 border-slate-900/10;
+  }
+}
+
+.dark {
+  .ProseMirror {
+    @apply text-sky-100;
+
+    pre {
+      @apply bg-black/40;
+    }
+
+    hr {
+      @apply border-sky-100/10;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!pending" class="grid grid-cols-3 my-4">
-    <div class="overflow-hidden col-start-1 col-end-3 bordered">
+  <div v-if="!pending" class="flex gap-5 my-4">
+    <div class="overflow-hidden basis-2/3 bordered">
       <img
         v-if="post?.coverImage"
         :src="post?.coverImage"
@@ -30,7 +30,18 @@
           </div>
         </div>
 
-        <div class="mt-4 prose" v-html="post?.text"></div>
+        <!-- <div class="mt-4 ProseMirror" v-html="post?.text"></div> -->
+        <client-only>
+          <editor-content
+            :editor="
+              new Editor({
+                editable: false,
+                extensions: [StarterKit],
+                content: post?.text,
+              })
+            "
+          />
+        </client-only>
       </div>
     </div>
   </div>
@@ -39,92 +50,23 @@
 
 <script setup lang="ts">
 import { PostInterface } from "~/nuxt";
+import { EditorContent, Editor } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
 
 const route = useRoute();
+
 const { data: post, pending } = useLazyAsyncData(
   `/api/users/${route.params.author}/${route.params.slug}`,
-  async () =>
-    await $fetch<PostInterface>(
+  async () => {
+    return await $fetch<PostInterface>(
       `/api/users/${route.params.author}/${route.params.slug}`,
-    ),
+    );
+  },
 );
 </script>
 
 <style lang="postcss" scoped>
 h1 {
   @apply text-5xl mt-10 mb-6;
-}
-
-.prose {
-  @apply outline-none text-slate-900 text-lg tracking-wider font-medium leading-relaxed border-none;
-
-  p {
-    @apply text-lg;
-  }
-
-  h2 {
-    @apply font-bold text-4xl;
-  }
-
-  h3 {
-    @apply font-bold text-3xl;
-  }
-
-  h4 {
-    @apply font-bold text-2xl;
-  }
-
-  ul {
-    @apply list-disc;
-  }
-
-  ol {
-    @apply list-decimal;
-  }
-
-  ul,
-  ol {
-    @apply list-inside;
-
-    li {
-      p {
-        @apply inline;
-      }
-    }
-  }
-
-  pre {
-    @apply bg-slate-300/50 px-4 py-5 rounded-lg text-base;
-
-    code {
-      @apply bg-inherit p-0;
-    }
-  }
-
-  blockquote {
-    @apply px-4 mx-7 my-4 border-l-4 border-sky-800/10;
-  }
-
-  code {
-    @apply bg-black/10 p-1 text-base rounded;
-  }
-
-  hr {
-    @apply content-none m-7 border-t-0 border-b-2 border-slate-900/10;
-  }
-}
-
-.dark {
-  .prose {
-    @apply text-sky-100;
-
-    pre {
-      @apply bg-black/40;
-    }
-
-    hr {
-      @apply border-sky-100/10;
-    }
-  }
 }
 </style>
