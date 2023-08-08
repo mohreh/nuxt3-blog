@@ -10,8 +10,14 @@
           <h3>Famous Topics</h3>
         </div>
 
-        <div class="p-2 bordered">
-          <h3>Footer stuff</h3>
+        <div>
+          <a
+            href="https://www.github.com/mohreh/nuxt3-blog"
+            class="flex gap-2 items-end"
+          >
+            <Icon name="codicon:github-inverted" />
+            <b>Link To Source Code</b>
+          </a>
         </div>
       </section>
 
