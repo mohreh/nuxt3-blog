@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     orderBy: {
       createdAt: "desc",
     },
+    take: 7,
   });
 
   if (!post) {

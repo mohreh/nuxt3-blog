@@ -44,7 +44,7 @@
         </client-only>
       </div>
     </div>
-    <lazy-card-user
+    <card-user
       class="basis-1/3"
       :user="post?.author"
       :current-post-slug="$route.params.slug as string"
@@ -60,7 +60,11 @@ import StarterKit from "@tiptap/starter-kit";
 
 const route = useRoute();
 
-const { data: post, pending } = useLazyAsyncData(
+const {
+  data: post,
+  pending,
+  // error, todo
+} = useLazyAsyncData(
   `/api/users/${route.params.author}/${route.params.slug}`,
   async () => {
     return await $fetch<PostInterface>(
