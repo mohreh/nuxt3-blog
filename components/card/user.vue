@@ -2,7 +2,10 @@
   <div class="px-5 h-fit">
     <div class="flex gap-3 items-center flox-row">
       <div class="w-8 h-8" v-html="user.avatar" />
-      <h3>{{ user.username }}</h3>
+
+      <nuxt-link :to="'/' + user.username">
+        <h3>{{ user.username }}</h3>
+      </nuxt-link>
       <button
         class="flex-grow py-2 ml-8 bg-blue-500 rounded"
         @click="followAuthor"
@@ -54,7 +57,7 @@ const props = defineProps<{
 
 const route = useRoute();
 
-let { data: posts, pending } = await useAsyncData(
+const { data: posts, pending } = await useAsyncData(
   `/api/users/${route.params.author}/posts`,
   async () => {
     return await $fetch<PostInterface[]>(
