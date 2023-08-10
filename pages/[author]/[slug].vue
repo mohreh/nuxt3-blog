@@ -46,11 +46,7 @@
         </client-only>
       </div>
     </div>
-    <card-user
-      class="basis-1/3"
-      :user="post?.author"
-      :current-post-slug="$route.params.slug as string"
-    />
+    <card-user class="basis-1/3" />
   </div>
   <div v-else>Loading...</div>
 </template>

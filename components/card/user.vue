@@ -1,10 +1,10 @@
 <template>
   <div class="px-5 h-fit">
     <div class="flex gap-3 items-center flox-row">
-      <div class="w-8 h-8" v-html="user.avatar" />
+      <div class="w-8 h-8" v-html="author?.avatar" />
 
-      <nuxt-link :to="'/' + user.username">
-        <h3>{{ user.username }}</h3>
+      <nuxt-link :to="'/' + author?.username">
+        <h3>{{ author?.username }}</h3>
       </nuxt-link>
       <button
         class="flex-grow py-2 ml-8 bg-blue-500 rounded"
@@ -14,10 +14,10 @@
       </button>
     </div>
     <div v-if="!pending" class="flex flex-col gap-6 p-5 my-5 bordered">
-      <h2 class="m-0">Latest Posts Of {{ user.username }}</h2>
+      <h2 class="m-0">Latest Posts Of {{ author?.username }}</h2>
       <div
-        v-for="post in posts?.filter(
-      (post) => post.slug !== props.currentPostSlug,
+        v-for="post in author?.posts.filter(
+      (post) => post.slug !== route.params.slug,
     ) as PostInterface[]"
         :key="post.id"
         class=""
@@ -50,19 +50,16 @@
 <script lang="ts" setup>
 import { PostInterface, Author } from "nuxt";
 
-const props = defineProps<{
-  user: Author;
-  currentPostSlug: string;
-}>();
-
 const route = useRoute();
 
-const { data: posts, pending } = await useAsyncData(
-  `/api/users/${route.params.author}/posts`,
+const { data: author, pending } = await useAsyncData(
+  `/api/users/${route.params.author}`,
   async () => {
-    return await $fetch<PostInterface[]>(
-      `/api/users/${route.params.author}/posts`,
-    );
+    return await $fetch<Author>(`/api/users/${route.params.author}`, {
+      query: {
+        take: 8,
+      },
+    });
   },
 );
 

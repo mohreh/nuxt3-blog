@@ -22,6 +22,7 @@ export default defineEventHandler(async (event) => {
         select: {
           title: true,
           createdAt: true,
+          slug: true,
           tags: true,
         },
         orderBy: {
