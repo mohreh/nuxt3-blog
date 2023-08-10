@@ -41,6 +41,7 @@ interface PostInterface extends Post {
 interface Author {
   username: string;
   avatar: string;
+  posts: PostInterface[];
 }
 
 enum Role {

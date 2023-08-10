@@ -10,7 +10,9 @@
         <div class="flex flex-row gap-4 items-center">
           <div class="w-10 h-10" v-html="post?.author.avatar"></div>
           <div class="flex flex-col">
-            <span class="font-bold">{{ post?.author.username }}</span>
+            <nuxt-link :to="'/' + post?.author.username">
+              <span class="font-bold">{{ post?.author.username }}</span>
+            </nuxt-link>
             <span class="text-sm text-gray-600 dark:text-gray-300">
               {{ new Date(post?.createdAt as string).toDateString() }}
             </span>

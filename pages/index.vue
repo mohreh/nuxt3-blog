@@ -23,7 +23,7 @@
 
       <section class="p-2 grow">
         <h2 class="pb-0 border-none">Posts</h2>
-        <Posts />
+        <Posts :posts="posts" />
       </section>
 
       <section class="flex-none space-y-4 w-64">
@@ -41,13 +41,22 @@
 </template>
 
 <script lang="ts" setup>
+import { PostInterface } from "nuxt";
+import { useAlertStore } from "~/store/alert";
 import { useUserStore } from "~/store/user";
 
 const userStore = useUserStore();
+const { alert } = useAlertStore();
 
 definePageMeta({
   layout: "default",
 });
+
+const { data: posts, error } = useLazyAsyncData("/api/posts", () =>
+  $fetch<PostInterface[]>("/api/posts"),
+);
+
+if (error.value) alert(false, error.value.message);
 </script>
 
 <style lang="postcss" scoped>
