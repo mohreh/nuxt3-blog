@@ -46,7 +46,7 @@
         </client-only>
       </div>
     </div>
-    <card-user class="basis-1/3" />
+    <card-user :author="post?.author" class="basis-1/3" />
   </div>
   <div v-else>Loading...</div>
 </template>

@@ -10,17 +10,17 @@
         />
       </div>
     </div>
-    <div class="p-5 mt-5 basis-1/3 bordered h-fit">
+    <div v-if="!loadingTags" class="p-5 mt-5 basis-1/3 bordered h-fit">
       <h3>Tags {{ author?.username }} write about</h3>
 
       <div class="gap-3">
-        <div v-for="tag in tags" :key="tag.name" class="inline-block">
+        <div v-for="tag in tags" :key="tag" class="inline-block">
           <nuxt-link
-            :to="'/topics/' + tag.name"
+            :to="'/topics/' + tag"
             class="flex flex-row mx-1 gap-px-4"
           >
             <span class="text-slate-400 dark:text-slate-500">#</span>
-            <p>{{ tag.name }}</p>
+            <p>{{ tag }}</p>
           </nuxt-link>
         </div>
       </div>
@@ -30,7 +30,6 @@
 </template>
 
 <script setup lang="ts">
-import { Tag } from "@prisma/client";
 import { Author, PostInterface } from "nuxt";
 
 const route = useRoute();
@@ -46,17 +45,9 @@ const { data: author, pending } = useLazyAsyncData(
     }),
 );
 
-const tags = ref([] as Tag[]);
-
-watch(
-  pending,
-  (pending) => {
-    if (!pending) {
-      author.value?.posts.forEach((post) => {
-        post.tags.forEach((tag) => tags.value.push(tag));
-      });
-    }
-  },
-  { immediate: true },
+const { data: tags, pending: loadingTags } = useLazyAsyncData(
+  `/api/users/${route.params.author}/tags`,
+  async () =>
+    await $fetch<string[]>(`/api/users/${route.params.author}/tags`),
 );
 </script>

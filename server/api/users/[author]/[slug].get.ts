@@ -15,6 +15,18 @@ export default defineEventHandler(async (event) => {
         select: {
           username: true,
           avatar: true,
+          posts: {
+            select: {
+              title: true,
+              createdAt: true,
+              slug: true,
+              tags: true,
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+            take: 7,
+          },
         },
       },
       tags: true,

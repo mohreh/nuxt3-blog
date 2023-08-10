@@ -13,7 +13,7 @@
         Follow
       </button>
     </div>
-    <div v-if="!pending" class="flex flex-col gap-6 p-5 my-5 bordered">
+    <div class="flex flex-col gap-6 p-5 my-5 bordered">
       <h2 class="m-0">Latest Posts Of {{ author?.username }}</h2>
       <div
         v-for="post in author?.posts.filter(
@@ -52,16 +52,9 @@ import { PostInterface, Author } from "nuxt";
 
 const route = useRoute();
 
-const { data: author, pending } = await useAsyncData(
-  `/api/users/${route.params.author}`,
-  async () => {
-    return await $fetch<Author>(`/api/users/${route.params.author}`, {
-      query: {
-        take: 8,
-      },
-    });
-  },
-);
+defineProps<{
+  author: Author | undefined;
+}>();
 
 const followAuthor = () => {
   console.log("follow");
